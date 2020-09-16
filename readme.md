@@ -14,7 +14,7 @@ Concept project of an online examinations system.
 - POM: Maven
 
 - Database: MySQL | mysql-connector-java
-- Access Microsoft Format Files: POI 3.17
+- Access Microsoft Format Files: POI 3.17 & POI-OOXLM
 - Json: Gson 2.8.5
 - Types that extend the Java Collections Framework: Commons.Collections 4
 
