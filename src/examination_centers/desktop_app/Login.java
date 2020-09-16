@@ -219,9 +219,9 @@ public class Login extends javax.swing.JFrame {
                 rs = statement.executeQuery(sql);
                 if(rs.next()){
                     if(rs.getString("role").equals("0")){
-//                        AdminApp main1 = new AdminApp(rs.getString("id_user"),rs.getString("username"));
-//                        main1.setLocationRelativeTo(null);
-//                        main1.setVisible(true);
+                        Admin main1 = new Admin(rs.getString("id_user"),rs.getString("username"));
+                        main1.setLocationRelativeTo(null);
+                        main1.setVisible(true);
                     }else if(rs.getString("role").equals("1")){
                         Supervisor main2 = new Supervisor(rs.getString("id_user"),rs.getString("username"));
                         main2.setLocationRelativeTo(null);
