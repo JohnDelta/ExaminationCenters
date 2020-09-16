@@ -7,7 +7,7 @@ import java.util.Set;
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.Path;
 
-@ApplicationPath("/")
+@ApplicationPath("/ExaminationCenters")
 @Path("/")
 public class Application {
 	public Set<Class<?>> getClasses() { 

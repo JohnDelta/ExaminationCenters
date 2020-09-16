@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.BorderFactory;
 
+import examination_centers.database.Database;
+
 public class Login extends javax.swing.JFrame {
 
     /**
@@ -176,17 +178,17 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitButtonMouseEntered
-        // TODO add your handling code here:
+
         submitButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_submitButtonMouseEntered
 
     private void submitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitButtonMouseExited
-        // TODO add your handling code here:
+
         submitButton.setBorder(BorderFactory.createMatteBorder(1,0,1,0,Color.decode("0x448AFF")));
     }//GEN-LAST:event_submitButtonMouseExited
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        // TODO add your handling code here:
+
         String username = usernameTextField.getText();
         String password = "";
         for(int i=0;i<jPasswordField1.getPassword().length;i++){
@@ -198,9 +200,7 @@ public class Login extends javax.swing.JFrame {
             errorLabel.setText("Only alpharithmetics longer than 5 characters are permitted");
         }else{
             try{
-            Class.forName("com.mysql.jdbc.Driver");
-            String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-            Connection connection = DriverManager.getConnection(database);
+            Connection connection = new Database().getConnection();
             Statement statement = connection.createStatement();
             ResultSet rs;
             boolean exists = false;
@@ -219,9 +219,9 @@ public class Login extends javax.swing.JFrame {
                 rs = statement.executeQuery(sql);
                 if(rs.first()){
                     if(rs.getString("role").equals("0")){
-                        AdminApp main1 = new AdminApp(rs.getString("id_user"),rs.getString("username"));
-                        main1.setLocationRelativeTo(null);
-                        main1.setVisible(true);
+//                        AdminApp main1 = new AdminApp(rs.getString("id_user"),rs.getString("username"));
+//                        main1.setLocationRelativeTo(null);
+//                        main1.setVisible(true);
                     }else if(rs.getString("role").equals("1")){
                         Supervisor main2 = new Supervisor(rs.getString("id_user"),rs.getString("username"));
                         main2.setLocationRelativeTo(null);
@@ -236,7 +236,7 @@ public class Login extends javax.swing.JFrame {
             }else{
                 errorLabel.setText("Wrong username or password");
             }
-            }catch(ClassNotFoundException | SQLException e){
+            }catch(SQLException e){
                 e.printStackTrace();
             }
         }

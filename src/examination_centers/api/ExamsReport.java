@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import com.google.gson.Gson;
 
+import examination_centers.database.Database;
 import examination_centers.entities.ExamReport;
 
 /*
@@ -24,9 +25,7 @@ public class ExamsReport {
         String result = "";
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String database = "jdbc:mysql://localhost:3306/examination_centers?user=root&password=026849";
-            Connection connection = DriverManager.getConnection(database);
+            Connection connection = new Database().getConnection();
             Statement statement = connection.createStatement();
             Statement statement2 = connection.createStatement();
             String sql;
@@ -88,7 +87,7 @@ public class ExamsReport {
             }
             rs.close();
             
-        } catch(SQLException | ClassNotFoundException e) {
+        } catch(SQLException e) {
             e.printStackTrace();
         }
         result = new Gson().toJson(report);

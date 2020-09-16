@@ -7,12 +7,13 @@ Concept project of an online examinations system.
 - Dynamic Web 4+ project
 - M2Eclipse plug-in for Maven
 - Have installed software: Web, XML, Java EE and OSGi Enterprise Development
+- Window Builder (for the Swing GUI build)
 
 ## Utilized (and Dependencies):
 - Server: Tomcat EE PLUS v9
 - JAX-RS API: Jersey
 - POM: Maven
-
+- Swing GUI framework
 - Database: MySQL | mysql-connector-java
 - Access Microsoft Format Files: POI 3.17 & POI-OOXLM
 - Json: Gson 2.8.5
@@ -23,25 +24,13 @@ Concept project of an online examinations system.
 - JavaResources
 
 ## Installation (using Eclipse IDE)
-- Import git project and clone
+- Import git project and clone it
+- Go to DatabaseInfo folder, take the db script and run the query into your localhost database
+- Go to examination_centers.database package and change the host database, password and username with your localhost credencials
 
 ## Concept info - methods/Services
 
 ### Admin
-- Create /Delete /Alter /Fetch (all & by ID) Users
-- Create /Delete /Alter /Fetch (all & by ID) Courses
-- Create /Delete /Alter Exams (manage from courses)
-- Create /Delete /Alter Questions (manage from courses)
-- Create /Delete /Alter PossibleAnswers (manage from questions)
-- Create /Delete /Alter UserHasCourses (manage from courses)
-- Create /Delete /Alter UserHasQuestions (manage from exams)
-- Create /Delete /Alter UserHasAnswers (manage from exams)
+
 
 ### Querries
-- Fetch users by course ID
-- Fetch users by exam ID
-- Fetch courses by user ID
-- Fetch exams by course ID
-- Fetch questions by course ID
-- Fetch answers by questions ID
-- Fetch user's answers and questions by user, exam ID

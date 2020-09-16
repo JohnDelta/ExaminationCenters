@@ -4,8 +4,14 @@ package examination_centers.desktop_app;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import examination_centers.database.Database;
 import examination_centers.entities.*;
 import examination_centers.report_downloaders.*;
+import jakarta.ws.rs.ClientErrorException;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.MediaType;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -83,9 +89,7 @@ public class Supervisor extends javax.swing.JFrame {
         this.id_user = id_user;
         this.username = username;
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-            Connection connection = DriverManager.getConnection(database);
+            Connection connection = new Database().getConnection();
             Statement statement = connection.createStatement();
             ResultSet rs;
             String sql = "select * from user where id_user = '"+this.id_user+"'";
@@ -101,7 +105,7 @@ public class Supervisor extends javax.swing.JFrame {
             }
             rs.close();
             connection.close();
-        }catch(SQLException | ClassNotFoundException e){e.printStackTrace();}
+        }catch(SQLException e){e.printStackTrace();}
         initComponents();
     }
 
@@ -599,9 +603,7 @@ public class Supervisor extends javax.swing.JFrame {
                     containerPanel.revalidate();
                     classBackButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
                     try{
-                        Class.forName("com.mysql.jdbc.Driver");
-                        String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-                        Connection connection = DriverManager.getConnection(database);
+                        Connection connection = new Database().getConnection();
                         Statement statement = connection.createStatement();
                         String sql = "select * from examination,class where class.id_class = '"+id_classSelected+"'"
                         + " and examination.id_examination = class.id_examination";
@@ -652,7 +654,7 @@ public class Supervisor extends javax.swing.JFrame {
                             }
                         }
                         connection.close();
-                    }catch(ClassNotFoundException | SQLException e1){
+                    }catch(SQLException e1){
                         e1.printStackTrace();
                     }
                 }
@@ -916,9 +918,7 @@ public class Supervisor extends javax.swing.JFrame {
                                 modelResult.removeRow(x);
                             }
 
-                            Class.forName("com.mysql.jdbc.Driver");
-                            String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-                            Connection connection = DriverManager.getConnection(database);
+                            Connection connection = new Database().getConnection();
                             Statement statement = connection.createStatement();
                             Statement statement2 = connection.createStatement();
                             String sql = "";
@@ -995,7 +995,7 @@ public class Supervisor extends javax.swing.JFrame {
                         }
                         connection.close();
                     }
-                }catch(SQLException | ClassNotFoundException err){
+                }catch(SQLException err){
                     err.printStackTrace();
                 }
             }
@@ -1536,9 +1536,7 @@ public class Supervisor extends javax.swing.JFrame {
                     for (int x = rowCount - 1; x >= 0; x--) {
                         modelResult.removeRow(x);
                     }
-                    Class.forName("com.mysql.jdbc.Driver");
-                    String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-                    Connection connection = DriverManager.getConnection(database);
+                    Connection connection = new Database().getConnection();
                     Statement statement = connection.createStatement();
                     Statement statement2 = connection.createStatement();
                     String sql = "";
@@ -1632,7 +1630,7 @@ public class Supervisor extends javax.swing.JFrame {
                 }
                 connection.close();
             }
-        }catch(SQLException | ClassNotFoundException err){
+        }catch(SQLException err){
             err.printStackTrace();
         }
 
@@ -2149,43 +2147,43 @@ public class Supervisor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void profilButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilButtonMouseEntered
-        // TODO add your handling code here:
+
         profilButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1, Color.decode("0x448AFF")));
         menuPanel.repaint();
     }//GEN-LAST:event_profilButtonMouseEntered
 
     private void profilButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilButtonMouseExited
-        // TODO add your handling code here:
+
         profilButton.setBorder(BorderFactory.createMatteBorder(0,0,1,0, Color.decode("0x448AFF")));
         menuPanel.repaint();
     }//GEN-LAST:event_profilButtonMouseExited
 
     private void classesButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classesButtonMouseEntered
-        // TODO add your handling code here:
+
         classesButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1, Color.decode("0x448AFF")));
         menuPanel.repaint();
-    }//GEN-LAST:event_classesButtonMouseEntered
+    }
 
-    private void classesButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classesButtonMouseExited
-        // TODO add your handling code here:
+    private void classesButtonMouseExited(java.awt.event.MouseEvent evt) {
+
         classesButton.setBorder(BorderFactory.createMatteBorder(0,0,1,0, Color.decode("0x448AFF")));
         menuPanel.repaint();
     }//GEN-LAST:event_classesButtonMouseExited
 
     private void logoutButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseEntered
-        // TODO add your handling code here:
+
         logoutButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1, Color.decode("0x448AFF")));
         menuPanel.repaint();
     }//GEN-LAST:event_logoutButtonMouseEntered
 
     private void logoutButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseExited
-        // TODO add your handling code here:
+    
         logoutButton.setBorder(BorderFactory.createMatteBorder(0,0,1,0, Color.decode("0x448AFF")));
         menuPanel.repaint();
     }//GEN-LAST:event_logoutButtonMouseExited
 
     private void profilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profilButtonActionPerformed
-        // TODO add your handling code here:
+ 
         containerPanel.removeAll();
         containerPanel.add(profilPanel);
         containerPanel.repaint();
@@ -2206,7 +2204,7 @@ public class Supervisor extends javax.swing.JFrame {
     }//GEN-LAST:event_profilButtonActionPerformed
 
     private void classesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classesButtonActionPerformed
-        // TODO add your handling code here:
+
         containerPanel.removeAll();
         containerPanel.add(classesPanel);
         containerPanel.repaint();
@@ -2249,11 +2247,11 @@ public class Supervisor extends javax.swing.JFrame {
     }//GEN-LAST:event_classesButtonActionPerformed
 
     private void profilButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilButtonMouseClicked
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_profilButtonMouseClicked
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        // TODO add your handling code here:
+
         this.dispose();
         Login login = new Login();
         login.setVisible(true);
@@ -2261,17 +2259,17 @@ public class Supervisor extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void searchButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchButtonMouseEntered
-        // TODO add your handling code here:
+
         searchButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1, Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchButtonMouseEntered
 
     private void searchButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchButtonMouseExited
-        // TODO add your handling code here:
+
         searchButton.setBorder(BorderFactory.createMatteBorder(0,0,1,0, Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchButtonMouseExited
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        // TODO add your handling code here:
+
         containerPanel.removeAll();
         containerPanel.add(searchPanel);
         containerPanel.repaint();
@@ -2284,17 +2282,17 @@ public class Supervisor extends javax.swing.JFrame {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void searchSubmitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchSubmitButtonMouseEntered
-        // TODO add your handling code here:
+
         searchSubmitButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchSubmitButtonMouseEntered
 
     private void searchSubmitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchSubmitButtonMouseExited
-        // TODO add your handling code here:
+
         searchSubmitButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchSubmitButtonMouseExited
 
     private void searchSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSubmitButtonActionPerformed
-        // TODO add your handling code here:
+ 
         String regex = "[a-zA-Z]{1,}[a-zA-Z0-9]*";
         String username = searchUsernameTextField.getText();
         String name = searchNameTextField.getText();
@@ -2304,9 +2302,7 @@ public class Supervisor extends javax.swing.JFrame {
         }else{
             if(username.matches(regex) && name.matches(regex) && lastname.matches(regex)){
                 try{
-                    Class.forName("com.mysql.jdbc.Driver");
-                    String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-                    Connection connection = DriverManager.getConnection(database);
+                    Connection connection = new Database().getConnection();
                     Statement statement = connection.createStatement();
                     String id_user="";
                     String phone="";
@@ -2314,9 +2310,7 @@ public class Supervisor extends javax.swing.JFrame {
                     String email="";
                     String role="";
                     String sql;
-                    int i=0;
-                    ResultSet rs,rs2;
-                    Statement statement2 = connection.createStatement();
+                    ResultSet rs;
                     boolean flag = true;
                     //see if the user exists
                     sql = "select count(*) from user where name = '"+name+"' and username = '"+username+"'"
@@ -2387,7 +2381,7 @@ public class Supervisor extends javax.swing.JFrame {
                         searchErrorLabel.setText("Cannot find user with this data");
                     }
                     connection.close();
-                }catch(SQLException | ClassNotFoundException e){
+                }catch(SQLException e){
                     e.printStackTrace();
                 }  
             }else{
@@ -2397,17 +2391,17 @@ public class Supervisor extends javax.swing.JFrame {
     }//GEN-LAST:event_searchSubmitButtonActionPerformed
 
     private void searchResultBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchResultBackButtonMouseEntered
-        // TODO add your handling code here:
+
         searchResultBackButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchResultBackButtonMouseEntered
 
     private void searchResultBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchResultBackButtonMouseExited
-        // TODO add your handling code here:
+
         searchResultBackButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchResultBackButtonMouseExited
 
     private void searchResultBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchResultBackButtonActionPerformed
-        // TODO add your handling code here:
+
         containerPanel.removeAll();
         containerPanel.add(searchPanel);
         containerPanel.repaint();
@@ -2415,17 +2409,17 @@ public class Supervisor extends javax.swing.JFrame {
     }//GEN-LAST:event_searchResultBackButtonActionPerformed
 
     private void searchResultStudentBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchResultStudentBackButtonMouseEntered
-        // TODO add your handling code here:
+
         searchResultStudentBackButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchResultStudentBackButtonMouseEntered
 
     private void searchResultStudentBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchResultStudentBackButtonMouseExited
-        // TODO add your handling code here:
+
         searchResultStudentBackButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchResultStudentBackButtonMouseExited
 
     private void searchResultStudentBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchResultStudentBackButtonActionPerformed
-        // TODO add your handling code here:
+
         containerPanel.removeAll();
         if(comeFrom.equals("user")){
             containerPanel.add(searchResultPanel);
@@ -2437,17 +2431,17 @@ public class Supervisor extends javax.swing.JFrame {
     }//GEN-LAST:event_searchResultStudentBackButtonActionPerformed
 
     private void classBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBackButtonMouseEntered
-        // TODO add your handling code here:
+
         classBackButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classBackButtonMouseEntered
 
     private void classBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBackButtonMouseExited
-        // TODO add your handling code here:
+
         classBackButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classBackButtonMouseExited
 
     private void classBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBackButtonActionPerformed
-        // TODO add your handling code here:
+
         containerPanel.removeAll();
         containerPanel.add(classesPanel);
         containerPanel.repaint();
@@ -2486,17 +2480,17 @@ public class Supervisor extends javax.swing.JFrame {
     }//GEN-LAST:event_classBackButtonActionPerformed
 
     private void classInsertButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classInsertButtonMouseEntered
-        // TODO add your handling code here:
+
         classInsertButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classInsertButtonMouseEntered
 
     private void classInsertButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classInsertButtonMouseExited
-        // TODO add your handling code here:
+
         classInsertButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classInsertButtonMouseExited
 
     private void classInsertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classInsertButtonActionPerformed
-        // TODO add your handling code here:
+
         containerPanel.removeAll();
         containerPanel.add(insertClassPanel);
         containerPanel.repaint();
@@ -2507,17 +2501,17 @@ public class Supervisor extends javax.swing.JFrame {
     }//GEN-LAST:event_classInsertButtonActionPerformed
 
     private void classRemoveButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classRemoveButtonMouseEntered
-        // TODO add your handling code here:
+  
         classRemoveButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classRemoveButtonMouseEntered
 
     private void classRemoveButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classRemoveButtonMouseExited
-        // TODO add your handling code here:
+
         classRemoveButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classRemoveButtonMouseExited
 
     private void classRemoveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classRemoveButtonActionPerformed
-        // TODO add your handling code here:
+
         containerPanel.removeAll();
         containerPanel.add(removeClassPanel);
         containerPanel.repaint();
@@ -2528,22 +2522,20 @@ public class Supervisor extends javax.swing.JFrame {
     }//GEN-LAST:event_classRemoveButtonActionPerformed
 
     private void classStateButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classStateButtonMouseEntered
-        // TODO add your handling code here:
+
         classStateButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classStateButtonMouseEntered
 
     private void classStateButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classStateButtonMouseExited
-        // TODO add your handling code here:
+
         classStateButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classStateButtonMouseExited
 
     private void classStateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classStateButtonActionPerformed
-        // TODO add your handling code here:
+
         //take the currect state of the exam, and switch to the next state
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-            Connection connection = DriverManager.getConnection(database);
+            Connection connection = new Database().getConnection();
             Statement statement = connection.createStatement();
             String sql = "";
             String choise = "0";
@@ -2615,23 +2607,23 @@ public class Supervisor extends javax.swing.JFrame {
                 }
             }
             connection.close();
-        }catch(ClassNotFoundException | SQLException e2){
+        }catch(SQLException e2){
             e2.printStackTrace();
         }
     }//GEN-LAST:event_classStateButtonActionPerformed
 
     private void insertClassSubmitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertClassSubmitButtonMouseEntered
-        // TODO add your handling code here:
+
         insertClassSubmitButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_insertClassSubmitButtonMouseEntered
 
     private void insertClassSubmitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertClassSubmitButtonMouseExited
-        // TODO add your handling code here:
+
         insertClassSubmitButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_insertClassSubmitButtonMouseExited
 
     private void insertClassFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertClassFileButtonActionPerformed
-        // TODO add your handling code here:
+
         int returnVal = fileChooser.showOpenDialog(Supervisor.this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
@@ -2639,9 +2631,7 @@ public class Supervisor extends javax.swing.JFrame {
             Connection connection = null;
             Statement statement = null;
             try{
-                Class.forName("com.mysql.jdbc.Driver");
-                String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-                connection = DriverManager.getConnection(database);
+                connection = new Database().getConnection();
                 statement = connection.createStatement();
                 //set auto commit to false, make sure all entries will insert before commiting
                 connection.setAutoCommit(false);
@@ -2652,7 +2642,6 @@ public class Supervisor extends javax.swing.JFrame {
                     int entries=0;
                     workbook = WorkbookFactory.create(file);
                     Sheet sheet = workbook.getSheetAt(0);
-                    DataFormatter dataFormatter = new DataFormatter();
                     for (Row row: sheet) {
                         if(row.getLastCellNum()>=4 || row.getRowNum()>0){
                             /*  OPEN DATABASE - CHECK LOGICAL CONNECTION - INSERT ENTRIES - START   */
@@ -2729,7 +2718,7 @@ public class Supervisor extends javax.swing.JFrame {
                 //file.delete();
                 /*      OPEN EXCEL FILE HERE   -  END        */
                 connection.close();
-            } catch (SQLException | ClassNotFoundException ex) {
+            } catch (SQLException ex) {
                 ex.printStackTrace();
                 insertClassErrorLabel.setText("Procedure unable to finish. File doesn't have the proper format or some records are incorect");
             } catch (IOException ex) {
@@ -2742,21 +2731,21 @@ public class Supervisor extends javax.swing.JFrame {
     }//GEN-LAST:event_insertClassFileButtonActionPerformed
 
     private void insertClassUsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertClassUsernameTextFieldActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_insertClassUsernameTextFieldActionPerformed
 
     private void insertClassBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertClassBackButtonMouseEntered
-        // TODO add your handling code here:
+
         insertClassBackButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_insertClassBackButtonMouseEntered
 
     private void insertClassBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertClassBackButtonMouseExited
-        // TODO add your handling code here:
+
         insertClassBackButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_insertClassBackButtonMouseExited
 
     private void insertClassBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertClassBackButtonActionPerformed
-        // TODO add your handling code here:
+
         containerPanel.removeAll();
         containerPanel.add(classPanel);
         containerPanel.repaint();
@@ -2764,9 +2753,7 @@ public class Supervisor extends javax.swing.JFrame {
         classInsertButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
         //update class result again
         try{
-                Class.forName("com.mysql.jdbc.Driver");
-                String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-                Connection connection = DriverManager.getConnection(database);
+                Connection connection = new Database().getConnection();
                 Statement statement = connection.createStatement();
                 String sql = "select * from examination,class where class.id_class = '"+id_classSelected+"'"
                     + " and examination.id_examination = class.id_examination";
@@ -2818,13 +2805,13 @@ public class Supervisor extends javax.swing.JFrame {
                     }
                 }
                 connection.close();
-            }catch(ClassNotFoundException | SQLException e1){
+            }catch(SQLException e1){
                 e1.printStackTrace();
             }
     }//GEN-LAST:event_insertClassBackButtonActionPerformed
 
     private void insertClassSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertClassSubmitButtonActionPerformed
-        // TODO add your handling code here:
+
         String username = insertClassUsernameTextField.getText();
         String name = insertClassNameTextField.getText();
         String lastname = insertClassLastnameTextField.getText();
@@ -2835,9 +2822,7 @@ public class Supervisor extends javax.swing.JFrame {
         }else{
             if(username.matches(regex) && name.matches(regex) && lastname.matches(regex)){
                 try{
-                    Class.forName("com.mysql.jdbc.Driver");
-                    String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-                    Connection connection = DriverManager.getConnection(database);
+                    Connection connection = new Database().getConnection();
                     Statement statement = connection.createStatement();
                     //check if the user exists
                     String id_user=null;
@@ -2874,7 +2859,7 @@ public class Supervisor extends javax.swing.JFrame {
                         insertClassErrorLabel.setText("Cannot find user's info");
                     }
                     connection.close();
-                }catch(ClassNotFoundException | SQLException e3){
+                }catch(SQLException e3){
                     e3.printStackTrace();
                 }
             }else{
@@ -2884,21 +2869,21 @@ public class Supervisor extends javax.swing.JFrame {
     }//GEN-LAST:event_insertClassSubmitButtonActionPerformed
 
     private void removeClassUsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeClassUsernameTextFieldActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_removeClassUsernameTextFieldActionPerformed
 
     private void removeClassSubmitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeClassSubmitButtonMouseEntered
-        // TODO add your handling code here:
+
         removeClassSubmitButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_removeClassSubmitButtonMouseEntered
 
     private void removeClassSubmitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeClassSubmitButtonMouseExited
-        // TODO add your handling code here:
+
         removeClassSubmitButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_removeClassSubmitButtonMouseExited
 
     private void removeClassSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeClassSubmitButtonActionPerformed
-        // TODO add your handling code here:
+
         String username = removeClassUsernameTextField.getText();
         String name = removeClassNameTextField.getText();
         String lastname = removeClassLastnameTextField.getText();
@@ -2909,9 +2894,7 @@ public class Supervisor extends javax.swing.JFrame {
         }else{
             if(username.matches(regex) && name.matches(regex) && lastname.matches(regex)){
                 try{
-                    Class.forName("com.mysql.jdbc.Driver");
-                    String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-                    Connection connection = DriverManager.getConnection(database);
+                    Connection connection = new Database().getConnection();
                     Statement statement = connection.createStatement();
                     //check if the user exists
                     String id_user=null;
@@ -2948,7 +2931,7 @@ public class Supervisor extends javax.swing.JFrame {
                         removeClassErrorLabel.setText("User info not found");
                     }
                     connection.close();
-                }catch(ClassNotFoundException | SQLException e3){
+                }catch(SQLException e3){
                     e3.printStackTrace();
                 }
             }else{
@@ -2958,7 +2941,7 @@ public class Supervisor extends javax.swing.JFrame {
     }//GEN-LAST:event_removeClassSubmitButtonActionPerformed
 
     private void removeClassFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeClassFileButtonActionPerformed
-        // TODO add your handling code here:
+ 
          int returnVal = fileChooser.showOpenDialog(Supervisor.this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
@@ -2966,9 +2949,7 @@ public class Supervisor extends javax.swing.JFrame {
             Connection connection = null;
             Statement statement = null;
             try{
-                Class.forName("com.mysql.jdbc.Driver");
-                String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-                connection = DriverManager.getConnection(database);
+                connection = new Database().getConnection();
                 statement = connection.createStatement();
                 //set auto commit to false, make sure all entries will insert before commiting
                 connection.setAutoCommit(false);
@@ -2979,7 +2960,6 @@ public class Supervisor extends javax.swing.JFrame {
                     int entries=0;
                     workbook = WorkbookFactory.create(file);
                     Sheet sheet = workbook.getSheetAt(0);
-                    DataFormatter dataFormatter = new DataFormatter();
                     for (Row row: sheet) {
                         if(row.getLastCellNum()>=4 || row.getRowNum()>0){
                             /*  OPEN DATABASE - CHECK LOGICAL CONNECTION - INSERT ENTRIES - START   */
@@ -3056,7 +3036,7 @@ public class Supervisor extends javax.swing.JFrame {
                 //file.delete();
                 /*      OPEN EXCEL FILE HERE   -  END        */
                 connection.close();
-            } catch (SQLException | ClassNotFoundException ex) {
+            } catch (SQLException ex) {
                 ex.printStackTrace();
                 removeClassErrorLabel.setText("Procedure cannot complete, wrong file format or some lines might be wrong");
             } catch (IOException ex) {
@@ -3069,17 +3049,17 @@ public class Supervisor extends javax.swing.JFrame {
     }//GEN-LAST:event_removeClassFileButtonActionPerformed
 
     private void removeClassBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeClassBackButtonMouseEntered
-        // TODO add your handling code here:
+
         removeClassBackButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_removeClassBackButtonMouseEntered
 
     private void removeClassBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeClassBackButtonMouseExited
-        // TODO add your handling code here:
+
         removeClassBackButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_removeClassBackButtonMouseExited
 
     private void removeClassBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeClassBackButtonActionPerformed
-        // TODO add your handling code here:
+
         containerPanel.removeAll();
         containerPanel.add(classPanel);
         containerPanel.repaint();
@@ -3087,9 +3067,7 @@ public class Supervisor extends javax.swing.JFrame {
         classRemoveButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
         //update class result again
         try{
-                Class.forName("com.mysql.jdbc.Driver");
-                String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-                Connection connection = DriverManager.getConnection(database);
+                Connection connection = new Database().getConnection();
                 Statement statement = connection.createStatement();
                 String sql = "select * from examination,class where class.id_class = '"+id_classSelected+"'"
                     + " and examination.id_examination = class.id_examination";
@@ -3141,22 +3119,17 @@ public class Supervisor extends javax.swing.JFrame {
                     }
                 }
                 connection.close();
-            }catch(ClassNotFoundException | SQLException e1){
+            }catch(SQLException e1){
                 e1.printStackTrace();
             }
     }//GEN-LAST:event_removeClassBackButtonActionPerformed
 
     private void classDownloadReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classDownloadReportButtonActionPerformed
-        // TODO add your handling code here:
         SupervisorClassReportResult[] report = null;
         String id_class = id_classSelected;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-            Connection connection = DriverManager.getConnection(database);
+            Connection connection = new Database().getConnection();
             Statement statement = connection.createStatement();
-            /*  GET AN OBJECT OF CLASSES STUDENT'S RESULTS - START   */
-            String result="";
             Statement statement2 = connection.createStatement();
             ResultSet rs,rs2;
             //get the status of the exam (initial,running,expired)
@@ -3225,7 +3198,7 @@ public class Supervisor extends javax.swing.JFrame {
             }
             connection.close();
             
-            } catch (ClassNotFoundException | SQLException ex) {
+            } catch (SQLException ex) {
                 Logger.getLogger(SupervisorReportDownload.class.getName()).log(Level.SEVERE, null, ex);
             }
             /*  GET AN OBJECT OF CLASSES STUDENT'S RESULTS - END   */
@@ -3235,9 +3208,6 @@ public class Supervisor extends javax.swing.JFrame {
             if(report!=null){
                 // Create a Workbook
                 Workbook workbook = new XSSFWorkbook(); // new HSSFWorkbook() for generating `.xls` file
-                /* CreationHelper helps us create instances of various things like DataFormat,
-                Hyperlink, RichTextString etc, in a format (HSSF, XSSF) independent way */
-                CreationHelper createHelper = workbook.getCreationHelper();
                 // Create a Sheet
                 Sheet sheet = workbook.createSheet("Students");
                 // Create a Font for styling header cells
@@ -3282,9 +3252,9 @@ public class Supervisor extends javax.swing.JFrame {
                         workbook.close();
                     }
                 } catch (FileNotFoundException ex) {
-                    Logger.getLogger(AdminApp.class.getName()).log(Level.SEVERE, null, ex);
+                    //Logger.getLogger(AdminApp.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
-                    Logger.getLogger(AdminApp.class.getName()).log(Level.SEVERE, null, ex);
+                    //Logger.getLogger(AdminApp.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
     }//GEN-LAST:event_classDownloadReportButtonActionPerformed
@@ -3485,10 +3455,10 @@ public class Supervisor extends javax.swing.JFrame {
 
         private WebTarget webTarget;
         private Client client;
-        private static final String BASE_URI = "http://localhost:8080/WebApplication/webresources";
+        private static final String BASE_URI = "http://localhost:8080/ExaminationCenters/";
 
         public SupervisorClassesReport_JerseyClient(String id_user) {
-            client = javax.ws.rs.client.ClientBuilder.newClient();
+            client = ClientBuilder.newClient();
             String resourcePath = java.text.MessageFormat.format("supervisor-classes/report/{0}", new Object[]{id_user});
             webTarget = client.target(BASE_URI).path(resourcePath);
         }
@@ -3500,7 +3470,7 @@ public class Supervisor extends javax.swing.JFrame {
 
         public String getJson() throws ClientErrorException {
             WebTarget resource = webTarget;
-            return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
+            return resource.request(MediaType.APPLICATION_JSON).get(String.class);
         }
 
         public void close() {
@@ -3512,10 +3482,10 @@ public class Supervisor extends javax.swing.JFrame {
 
         private WebTarget webTarget;
         private Client client;
-        private static final String BASE_URI = "http://localhost:8080/WebApplication/webresources";
+        private static final String BASE_URI = "http://localhost:8080/ExaminationCenters/";
 
         public SupervisorClassReport_JerseyClient(String id_class) {
-            client = javax.ws.rs.client.ClientBuilder.newClient();
+            client = ClientBuilder.newClient();
             String resourcePath = java.text.MessageFormat.format("supervisor-class/report/{0}", new Object[]{id_class});
             webTarget = client.target(BASE_URI).path(resourcePath);
         }
@@ -3527,7 +3497,7 @@ public class Supervisor extends javax.swing.JFrame {
 
         public String getJson() throws ClientErrorException {
             WebTarget resource = webTarget;
-            return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(String.class);
+            return resource.request(MediaType.APPLICATION_JSON).get(String.class);
         }
 
         public void close() {

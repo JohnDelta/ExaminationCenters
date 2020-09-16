@@ -11,6 +11,8 @@ import java.util.Random;
 
 import com.google.gson.Gson;
 
+import examination_centers.database.Database;
+
 /*
  * This web service is used by the students.
  * The student sends the id_user and the id_class.
@@ -37,10 +39,7 @@ public class Exam {
 		
 		String result=null;
         try {
-        	
-            Class.forName("com.mysql.jdbc.Driver");
-            String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-            Connection connection = DriverManager.getConnection(database);
+            Connection connection = new Database().getConnection();
             
             Statement statement = connection.createStatement();
             Statement statement2 = connection.createStatement();
@@ -278,7 +277,7 @@ public class Exam {
             statement3.close();
             connection.close();
             
-        } catch(ClassNotFoundException | SQLException e) {
+        } catch(SQLException e) {
         	e.printStackTrace();
         }
         
@@ -294,9 +293,7 @@ public class Exam {
 	public void putJson(String json) {
 		Answer answer = new Gson().fromJson(json, Answer.class);
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-            Connection connection = DriverManager.getConnection(database);
+            Connection connection = new Database().getConnection();
             Statement statement = connection.createStatement();
             ResultSet rs = null;
             ResultSet rs2 = null;
@@ -365,7 +362,7 @@ public class Exam {
 //            } catch (IOException ex) {
 //	                ex.printStackTrace();
 //            }
-        } catch(ClassNotFoundException | SQLException e) {
+        } catch(SQLException e) {
             e.printStackTrace();
         }
 	}

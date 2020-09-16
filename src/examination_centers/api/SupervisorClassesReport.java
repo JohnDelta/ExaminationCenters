@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 import com.google.gson.Gson;
 
+import examination_centers.database.Database;
 import examination_centers.entities.SupervisorClassesReportResult;
 
 /*
@@ -20,10 +21,7 @@ public class SupervisorClassesReport {
 		
 		String result=null;
         try {
-        	
-            Class.forName("com.mysql.jdbc.Driver");
-            String database = "jdbc:mysql://localhost:3306/examination_centers?user=pma&password=026849";
-            Connection connection = DriverManager.getConnection(database);
+            Connection connection = new Database().getConnection();
             Statement statement = connection.createStatement();
             Statement statement2 = connection.createStatement();
             ResultSet rs,rs2;
@@ -81,7 +79,7 @@ public class SupervisorClassesReport {
                 result = null;
             }
             connection.close(); 
-        } catch(ClassNotFoundException | SQLException e) {
+        } catch(SQLException e) {
             e.printStackTrace();
         }
         if(result==null) {
