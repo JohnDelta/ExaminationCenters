@@ -56,7 +56,7 @@ public class Exam {
                     + "where class.id_examination = examination.id_examination "
                     + "and class.id_class = "+id_class+"";
             rs[0] = statement.executeQuery(sql);
-            if(rs[0].first()){
+            if(rs[0].next()){
                 open = rs[0].getInt("examination.open");
                 id_subject = rs[0].getString("examination.id_subject");
             }
@@ -64,7 +64,7 @@ public class Exam {
             sql = "select count(*) from class_has_user where id_user = '"+id_user+"' "
                     + "and id_class = '"+id_class+"'";
             rs[1] = statement.executeQuery(sql);
-            if(rs[1].first()){
+            if(rs[1].next()){
                 count = rs[1].getInt("count(*)");
             }
             rs[1].close();
@@ -103,14 +103,14 @@ public class Exam {
                             sql = "select correct from class_has_user where id_user = '"+id_user+"' "
                                     + "and id_class = '"+id_class+"' and id_question = '"+id_question+"'";
                             rs[15] = statement2.executeQuery(sql);
-                            if(rs[15].first()){
+                            if(rs[15].next()){
                                 correct = rs[15].getString("correct");
                             }
                             rs[15].close();
                             //take the question and the right answer
                             sql = "select * from question where id_question = '"+id_question+"'";
                             rs[4] = statement2.executeQuery(sql);
-                            if(rs[4].first()) {
+                            if(rs[4].next()) {
                                 question = rs[4].getString("question");
                                 correctAnswer = rs[4].getString("correct");
                             }
@@ -136,14 +136,14 @@ public class Exam {
                     
                 case 1:
                 //ON 1 THE EXAM IS RUNNING
-                    //first check the user state (Exam started, Exam continue, Exam complete)
+                    //next check the user state (Exam started, Exam continue, Exam complete)
                     if(count==1){
                         //GENERATE USER'S QUESTIONS
                         //get number of total questions
                         int n=0;
                         sql="select count(*) from question where id_subject = '"+id_subject+"'";
                         rs[5] = statement.executeQuery(sql);
-                        if(rs[5].first()){
+                        if(rs[5].next()){
                             n = rs[5].getInt("count(*)");
                         }
                         rs[5].close();
@@ -162,7 +162,7 @@ public class Exam {
                                         + " LIMIT "+random+",1";
                                 rs[6] = statement.executeQuery(sql);
                                 String id_question="";
-                                if(rs[6].first()){
+                                if(rs[6].next()){
                                     id_question = rs[6].getString("id_question");
                                 }
                                 rs[6].close();
@@ -170,10 +170,10 @@ public class Exam {
                                 sql = "select count(*) from class_has_user where id_user = '"+id_user+"'"
                                             + " and id_class = '"+id_class+"' and id_question = '"+id_question+"'"; 
                                 rs[7] = statement.executeQuery(sql);
-                                if(rs[7].first()){
+                                if(rs[7].next()){
                                     if(rs[7].getInt("count(*)") ==0 ){
                                         if(i==0){
-                                            //user the existant first row of user to store the question
+                                            //user the existant next row of user to store the question
                                             sql = "update class_has_user set id_question = '"+id_question+"'"
                                                     + " where id_class='"+id_class+"' and id_user = '"+id_user+"'";
                                         }else{
@@ -197,7 +197,7 @@ public class Exam {
                         while(rs[8].next()) {
                             sql = "select * from question where id_question = '"+rs[8].getString("id_question")+"'";
                             rs[9] = statement2.executeQuery(sql);
-                            if(rs[9].first()){
+                            if(rs[9].next()){
                                 questions[i] = new Question(rs[8].getString("id_question"),rs[9].getString("question"),
                                         rs[9].getString("answer1"),rs[9].getString("answer2"),
                                         rs[9].getString("answer3"),rs[9].getString("answer4"));
@@ -213,7 +213,7 @@ public class Exam {
                         sql = "select count(*) from class_has_user where id_user = '"+id_user+"' and "
                                 + "id_class = '"+id_class+"' and answer is not null";
                         rs[10] = statement.executeQuery(sql);
-                        if(rs[10].first()){
+                        if(rs[10].next()){
                             count = rs[10].getInt("count(*)");
                         }
                         rs[10].close();
@@ -233,7 +233,7 @@ public class Exam {
                                 //get the question
                                 sql = "select * from question where id_question = '"+id_question+"'";
                                 rs[12] = statement2.executeQuery(sql);
-                                if(rs[12].first()){
+                                if(rs[12].next()){
                                     question = rs[12].getString("question");
                                 }
                                 rs[12].close();
@@ -257,7 +257,7 @@ public class Exam {
                             while(rs[13].next()){
                                 sql = "select * from question where id_question = '"+rs[13].getString("id_question")+"'";
                                 rs[14] = statement2.executeQuery(sql);
-                                if(rs[14].first()){
+                                if(rs[14].next()){
                                     questions[i] = new Question(rs[13].getString("id_question"),rs[14].getString("question"),
                                             rs[14].getString("answer1"),rs[14].getString("answer2"),
                                             rs[14].getString("answer3"),rs[14].getString("answer4"));
@@ -304,14 +304,14 @@ public class Exam {
             String sql = "select examination.date from class,examination"
                     + " where id_class = '"+answer.id_class+"' and class.id_examination = examination.id_examination";
             rs = statement.executeQuery(sql);
-            if(rs.first()){
+            if(rs.next()){
                 startDate = new Date(rs.getTimestamp("date").getTime());
             }
             rs.close();
             //check if the student's answer is correct and answered in time
             sql = "select * from question where id_question = '"+answer.id_question+"'";
             rs2 = statement.executeQuery(sql);
-            if(rs2.first()){
+            if(rs2.next()){
                 int MINUTE_IN_MILLIS = 60000;
                 Date endDate = new Date(startDate.getTime()+5*MINUTE_IN_MILLIS);
                 Date answerDate = new Date(answer.date);

@@ -33,7 +33,7 @@ public class SupervisorClassReport {
             String sql = "select * from class,examination where class.id_examination = "
                     + "examination.id_examination and class.id_class = '"+id_class+"'";
             rs = statement.executeQuery(sql);
-            if(rs.first()){
+            if(rs.next()){
                 open = rs.getString("examination.open");
             }
             rs.close();
@@ -42,7 +42,7 @@ public class SupervisorClassReport {
                 + "class_has_user.id_class = '"+id_class+"' and class_has_user.id_user = user.id_user"
                 + " and user.role = '2'";
             rs = statement.executeQuery(sql);
-            if(rs.first()){
+            if(rs.next()){
                 numberOfStudents = rs.getInt("count(distinct user.id_user)");
             }
             rs.close();
@@ -86,7 +86,9 @@ public class SupervisorClassReport {
                     }
                     rs.close();
                 }
-                result = new Gson().toJson(report);
+                if(report.length > 0) {
+                	result = new Gson().toJson(report);
+                }
             } else {
                 result = new Gson().toJson("no-result");
             }

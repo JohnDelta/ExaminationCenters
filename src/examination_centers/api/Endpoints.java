@@ -20,7 +20,7 @@ public class Endpoints {
     }
 	
 	@GET
-    @Path("student-exam/exam")
+    @Path("student-exam/exam/{id_user}/{id_class}")
     @Produces("application/json")
     public String getClassesReport(
     		@PathParam("id_user") String id_user, 
@@ -30,7 +30,7 @@ public class Endpoints {
     }
 	
 	@PUT
-    @Path("student-exam/exam/")
+    @Path("student-exam/exam")
     @Consumes("application/json")
     public void getClassesReport(
     		@PathParam("json") String json
@@ -53,7 +53,7 @@ public class Endpoints {
     }
 	
 	@GET
-    @Path("supervisor-classes/report")
+    @Path("supervisor-classes/report/{id_user}")
     @Produces("application/json")
     public String getSupervisorClassesReport(
 		@PathParam("id_user") String id_user
@@ -62,7 +62,7 @@ public class Endpoints {
     }
 	
 	@GET
-    @Path("supervisor-class/report")
+    @Path("supervisor-class/report/{id_class}")
     @Produces("application/json")
     public String getSupervisorClassReport(
 		@PathParam("id_class") String id_class

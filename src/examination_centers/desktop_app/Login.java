@@ -207,7 +207,7 @@ public class Login extends javax.swing.JFrame {
             //check if the user exists
             String sql = "select count(*) from user where username = '"+username+"' and password = '"+password+"'";
             rs = statement.executeQuery(sql);
-            if(rs.first()){
+            if(rs.next()){
                 if(rs.getInt("count(*)")!=0){
                     exists = true;
                 }
@@ -217,7 +217,7 @@ public class Login extends javax.swing.JFrame {
                 //check if the user is admin - supervisor 
                 sql = "select * from user where username = '"+username+"' and password = '"+password+"'";
                 rs = statement.executeQuery(sql);
-                if(rs.first()){
+                if(rs.next()){
                     if(rs.getString("role").equals("0")){
 //                        AdminApp main1 = new AdminApp(rs.getString("id_user"),rs.getString("username"));
 //                        main1.setLocationRelativeTo(null);

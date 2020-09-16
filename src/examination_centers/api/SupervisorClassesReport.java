@@ -32,7 +32,7 @@ public class SupervisorClassesReport {
             //get the user's role to check if he is a supervisor (role == 1)
             String sql = "select role from user where id_user = '"+id_user+"'";
             rs = statement.executeQuery(sql);
-            if(rs.first()) {
+            if(rs.next()) {
                 role = rs.getString("role");
             }
             rs.close();
@@ -40,7 +40,7 @@ public class SupervisorClassesReport {
                 //set-up the result array
                 sql = "select count(*) from class_has_user where id_user = '"+id_user+"'";
                 rs = statement.executeQuery(sql);
-                if(rs.first()) {
+                if(rs.next()) {
                     numberOfClasses = rs.getInt("count(*)");
                 }
                 rs.close();
@@ -55,7 +55,7 @@ public class SupervisorClassesReport {
                             + " '"+rs.getString("id_class")+"' and user.id_user = class_has_user.id_user"
                             + " and user.role = '2'";
                     rs2 = statement2.executeQuery(sql);
-                    if(rs2.first()){
+                    if(rs2.next()){
                         numberOfStudents = rs2.getString("count(distinct user.id_user)");
                     }
                     rs2.close();
@@ -64,7 +64,7 @@ public class SupervisorClassesReport {
                             + " = examination.id_examination and examination.id_subject = "
                             + "subject.id_subject and class.id_class = '"+rs.getString("id_class")+"'";
                     rs2 = statement2.executeQuery(sql);
-                    if(rs2.first()){
+                    if(rs2.next()){
                         //create the object result
                         report[i] = new SupervisorClassesReportResult(rs2.getString("class.id_class"),rs2.getString("class.name"),
                         rs2.getString("examination.open"),rs2.getString("examination.date"),
@@ -74,7 +74,9 @@ public class SupervisorClassesReport {
                     i++;
                 }
                 rs.close();
-                result = new Gson().toJson(report);
+                if(report.length > 0) {
+                	result = new Gson().toJson(report);
+                }
             } else {
                 result = null;
             }
@@ -83,7 +85,7 @@ public class SupervisorClassesReport {
             e.printStackTrace();
         }
         if(result==null) {
-            result = new Gson().toJson("Δεν υπάρχουν αποτελέσματα");
+            result = new Gson().toJson("no-result");
         }
         return result;
 	}

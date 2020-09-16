@@ -55,7 +55,7 @@ public class ClassesReport {
                 sql = "select count(*) from class_has_user where id_user = '"+rs.getString("user.id_user")+"'"
                         + " and id_class = '"+rs.getString("class.id_class")+"'";
                 rs2 = statement2.executeQuery(sql);
-                if(rs2.first()){
+                if(rs2.next()){
                     size = rs2.getInt("count(*)");
                 }
                 rs2.close();

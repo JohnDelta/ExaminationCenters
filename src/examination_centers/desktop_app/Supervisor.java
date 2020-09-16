@@ -94,7 +94,7 @@ public class Supervisor extends javax.swing.JFrame {
             ResultSet rs;
             String sql = "select * from user where id_user = '"+this.id_user+"'";
             rs = statement.executeQuery(sql);
-            if(rs.first()){
+            if(rs.next()){
                 this.username = rs.getString("username");
                 this.name = rs.getString("name");
                 this.lastname = rs.getString("lastname");
@@ -609,7 +609,7 @@ public class Supervisor extends javax.swing.JFrame {
                         + " and examination.id_examination = class.id_examination";
                         ResultSet rs = statement.executeQuery(sql);
                         String open = "";
-                        if(rs.first()){
+                        if(rs.next()){
                             classId_class.setText(rs.getString("class.id_class"));
                             classId_exam.setText(rs.getString("examination.id_examination"));
                             className.setText(rs.getString("class.name"));
@@ -934,13 +934,13 @@ public class Supervisor extends javax.swing.JFrame {
                             //get his class data
                             sql = "select * from class where id_class = '"+id_class+"'";
                             rs = statement.executeQuery(sql);
-                            if(rs.first()){
+                            if(rs.next()){
                                 id_examination = rs.getString("id_examination");
                             }
                             rs.close();
                             sql = "select * from examination where id_examination = '"+id_examination+"'";
                             rs = statement.executeQuery(sql);
-                            if(rs.first()){
+                            if(rs.next()){
                                 open = rs.getString("open");
                             }
                             rs.close();
@@ -952,7 +952,7 @@ public class Supervisor extends javax.swing.JFrame {
                                 sql = "select count(*) from class_has_user where id_user = '"+id_user+"' and"
                                 + " id_class = '"+id_class+"'";
                                 rs = statement.executeQuery(sql);
-                                if(rs.first()){
+                                if(rs.next()){
                                     c = rs.getInt("count(*)");
                                 }
                                 rs.close();
@@ -969,7 +969,7 @@ public class Supervisor extends javax.swing.JFrame {
                                         //find the question
                                         sql = "select question from question where id_question = '"+rs.getString("id_question")+"'";
                                         rs2 = statement2.executeQuery(sql);
-                                        if(rs2.first()){
+                                        if(rs2.next()){
                                             question = rs2.getString("question");
                                         }
                                         rs2.close();
@@ -1006,7 +1006,7 @@ public class Supervisor extends javax.swing.JFrame {
     jScrollPane8.setViewportView(searchResultTable);
 
     searchResultBackButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-    searchResultBackButton.setText("Ξ Ξ―ΟƒΟ‰");
+    searchResultBackButton.setText("Back");
     searchResultBackButton.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 1, new java.awt.Color(68, 138, 255)));
     searchResultBackButton.setContentAreaFilled(false);
     searchResultBackButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1555,7 +1555,7 @@ public class Supervisor extends javax.swing.JFrame {
                     String lastname = classTable.getValueAt(classTable.getSelectedRow(), 2).toString();
                     sql = "select * from user where username = '"+username+"' and name = '"+name+"' and lastname = '"+lastname+"'";
                     rs = statement.executeQuery(sql);
-                    if(rs.first()){
+                    if(rs.next()){
                         searchResultStudentUsername.setText(rs.getString("username"));
                         searchResultStudentName.setText(rs.getString("name"));
                         searchResultStudentLastname.setText(rs.getString("lastname"));
@@ -1569,13 +1569,13 @@ public class Supervisor extends javax.swing.JFrame {
                     //get his class data
                     sql = "select * from class where id_class = '"+id_class+"'";
                     rs = statement.executeQuery(sql);
-                    if(rs.first()){
+                    if(rs.next()){
                         id_examination = rs.getString("id_examination");
                     }
                     rs.close();
                     sql = "select * from examination where id_examination = '"+id_examination+"'";
                     rs = statement.executeQuery(sql);
-                    if(rs.first()){
+                    if(rs.next()){
                         open = rs.getString("open");
                     }
                     rs.close();
@@ -1587,7 +1587,7 @@ public class Supervisor extends javax.swing.JFrame {
                         sql = "select count(*) from class_has_user where id_user = '"+id_user+"' and"
                         + " id_class = '"+id_class+"'";
                         rs = statement.executeQuery(sql);
-                        if(rs.first()){
+                        if(rs.next()){
                             c = rs.getInt("count(*)");
                         }
                         rs.close();
@@ -1604,7 +1604,7 @@ public class Supervisor extends javax.swing.JFrame {
                                 //find the question
                                 sql = "select question from question where id_question = '"+rs.getString("id_question")+"'";
                                 rs2 = statement2.executeQuery(sql);
-                                if(rs2.first()){
+                                if(rs2.next()){
                                     question = rs2.getString("question");
                                 }
                                 rs2.close();
@@ -1816,7 +1816,7 @@ public class Supervisor extends javax.swing.JFrame {
         }
     });
 
-    insertClassFileLabel2.setText("The first line of excel is used for the titles");
+    insertClassFileLabel2.setText("The next line of excel is used for the titles");
 
     insertClassFileLabel.setText("Format: same as the form shown");
 
@@ -2003,7 +2003,7 @@ public class Supervisor extends javax.swing.JFrame {
         }
     });
 
-    removeClassFileLabel2.setText("The first line is used for the titles");
+    removeClassFileLabel2.setText("The next line is used for the titles");
 
     removeClassFileLabel.setText("Format: same as the form shown");
 
@@ -2146,19 +2146,19 @@ public class Supervisor extends javax.swing.JFrame {
     pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void profilButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilButtonMouseEntered
+    private void profilButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-next:event_profilButtonMouseEntered
 
         profilButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1, Color.decode("0x448AFF")));
         menuPanel.repaint();
     }//GEN-LAST:event_profilButtonMouseEntered
 
-    private void profilButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilButtonMouseExited
+    private void profilButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-next:event_profilButtonMouseExited
 
         profilButton.setBorder(BorderFactory.createMatteBorder(0,0,1,0, Color.decode("0x448AFF")));
         menuPanel.repaint();
     }//GEN-LAST:event_profilButtonMouseExited
 
-    private void classesButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classesButtonMouseEntered
+    private void classesButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-next:event_classesButtonMouseEntered
 
         classesButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1, Color.decode("0x448AFF")));
         menuPanel.repaint();
@@ -2170,19 +2170,19 @@ public class Supervisor extends javax.swing.JFrame {
         menuPanel.repaint();
     }//GEN-LAST:event_classesButtonMouseExited
 
-    private void logoutButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseEntered
+    private void logoutButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-next:event_logoutButtonMouseEntered
 
         logoutButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1, Color.decode("0x448AFF")));
         menuPanel.repaint();
     }//GEN-LAST:event_logoutButtonMouseEntered
 
-    private void logoutButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutButtonMouseExited
+    private void logoutButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-next:event_logoutButtonMouseExited
     
         logoutButton.setBorder(BorderFactory.createMatteBorder(0,0,1,0, Color.decode("0x448AFF")));
         menuPanel.repaint();
     }//GEN-LAST:event_logoutButtonMouseExited
 
-    private void profilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profilButtonActionPerformed
+    private void profilButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_profilButtonActionPerformed
  
         containerPanel.removeAll();
         containerPanel.add(profilPanel);
@@ -2203,7 +2203,7 @@ public class Supervisor extends javax.swing.JFrame {
         profilRoleLabel.setText(this.role);
     }//GEN-LAST:event_profilButtonActionPerformed
 
-    private void classesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classesButtonActionPerformed
+    private void classesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_classesButtonActionPerformed
 
         containerPanel.removeAll();
         containerPanel.add(classesPanel);
@@ -2224,11 +2224,11 @@ public class Supervisor extends javax.swing.JFrame {
         //call rest service and take the result
         SupervisorClassesReport_JerseyClient client = new SupervisorClassesReport_JerseyClient(this.id_user);
         String dataClasses = client.getJson();
-        if(dataClasses.isEmpty()){
+        if(dataClasses.equals("\"no-result\"")) {
             classesErrorLabel.setText("No results found");
-        }else{
+        } else {
             TypeToken<ArrayList<SupervisorClassesReportResult>> tokenExam = new TypeToken<ArrayList<SupervisorClassesReportResult>>() {};
-            ArrayList<SupervisorClassesReportResult> classesReport =new Gson().fromJson(dataClasses, tokenExam.getType());
+            ArrayList<SupervisorClassesReportResult> classesReport = new Gson().fromJson(dataClasses, tokenExam.getType());
             String state = "";
             for(SupervisorClassesReportResult st : classesReport){
                 if(st.getExamOpen().equals("0")) state = "initial";
@@ -2246,11 +2246,11 @@ public class Supervisor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_classesButtonActionPerformed
 
-    private void profilButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilButtonMouseClicked
+    private void profilButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-next:event_profilButtonMouseClicked
 
     }//GEN-LAST:event_profilButtonMouseClicked
 
-    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_logoutButtonActionPerformed
 
         this.dispose();
         Login login = new Login();
@@ -2258,17 +2258,17 @@ public class Supervisor extends javax.swing.JFrame {
         login.setLocationRelativeTo(null);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
-    private void searchButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchButtonMouseEntered
+    private void searchButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-next:event_searchButtonMouseEntered
 
         searchButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1, Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchButtonMouseEntered
 
-    private void searchButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchButtonMouseExited
+    private void searchButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-next:event_searchButtonMouseExited
 
         searchButton.setBorder(BorderFactory.createMatteBorder(0,0,1,0, Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchButtonMouseExited
 
-    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_searchButtonActionPerformed
 
         containerPanel.removeAll();
         containerPanel.add(searchPanel);
@@ -2281,17 +2281,17 @@ public class Supervisor extends javax.swing.JFrame {
         menuPanel.repaint();
     }//GEN-LAST:event_searchButtonActionPerformed
 
-    private void searchSubmitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchSubmitButtonMouseEntered
+    private void searchSubmitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-next:event_searchSubmitButtonMouseEntered
 
         searchSubmitButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchSubmitButtonMouseEntered
 
-    private void searchSubmitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchSubmitButtonMouseExited
+    private void searchSubmitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-next:event_searchSubmitButtonMouseExited
 
         searchSubmitButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchSubmitButtonMouseExited
 
-    private void searchSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSubmitButtonActionPerformed
+    private void searchSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_searchSubmitButtonActionPerformed
  
         String regex = "[a-zA-Z]{1,}[a-zA-Z0-9]*";
         String username = searchUsernameTextField.getText();
@@ -2314,9 +2314,9 @@ public class Supervisor extends javax.swing.JFrame {
                     boolean flag = true;
                     //see if the user exists
                     sql = "select count(*) from user where name = '"+name+"' and username = '"+username+"'"
-                            + " and lastname = '"+lastname+"'";
+                            + " and lastname = '"+lastname+"' and role='2' ";
                     rs = statement.executeQuery(sql);
-                    if(rs.first()){
+                    if(rs.next()){
                         if(rs.getInt("count(*)")<1)
                             flag = false;
                     }
@@ -2325,7 +2325,7 @@ public class Supervisor extends javax.swing.JFrame {
                         sql = "select * from user where name = '"+name+"' and username = '"+username+"'"
                             + " and lastname = '"+lastname+"'";
                         rs = statement.executeQuery(sql);
-                        if(rs.first()){
+                        if(rs.next()){
                             id_userSelected = rs.getString("id_user");
                             id_user = rs.getString("id_user");
                             phone = rs.getString("phone");
@@ -2356,7 +2356,7 @@ public class Supervisor extends javax.swing.JFrame {
                         sql = "select count(distinct id_class) from class_has_user where id_user = '"+id_user+"'";
                         rs = statement.executeQuery(sql);
                         flag = false;
-                        if(rs.first()){
+                        if(rs.next()){
                             if(rs.getInt("count(distinct id_class)")>0){
                                 flag = true;
                             }
@@ -2371,14 +2371,14 @@ public class Supervisor extends javax.swing.JFrame {
                             rs = statement.executeQuery(sql);
                             String type = "";
                             while(rs.next()){
-                                if(rs.getString("examination.open").equals("0")) type = "Ξ‘Ο�Ο‡ΞΉΞΊΞ®";
-                                else if(rs.getString("examination.open").equals("1")) type = "Ξ£Ξµ Ξ›ΞµΞΉΟ„ΞΏΟ…Ο�Ξ³Ξ―Ξ±";
-                                else if(rs.getString("examination.open").equals("2")) type = "Ξ�Ξ»ΞΏΞΊΞ»Ξ·Ο�Ο‰ΞΌΞ­Ξ½Ξ·";
+                                if(rs.getString("examination.open").equals("0")) type = "initial";
+                                else if(rs.getString("examination.open").equals("1")) type = "running";
+                                else if(rs.getString("examination.open").equals("2")) type = "finished";
                                 modelSearch.addRow(new String[]{rs.getString("class.id_class"),rs.getString("examination.id_examination"),rs.getString("examination.date"),rs.getString("subject.title"),type});
                             }
                         }
                     }else{
-                        searchErrorLabel.setText("Cannot find user with this data");
+                        searchErrorLabel.setText("Cannot find student with this data");
                     }
                     connection.close();
                 }catch(SQLException e){
@@ -2390,17 +2390,17 @@ public class Supervisor extends javax.swing.JFrame {
         }    
     }//GEN-LAST:event_searchSubmitButtonActionPerformed
 
-    private void searchResultBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchResultBackButtonMouseEntered
+    private void searchResultBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-next:event_searchResultBackButtonMouseEntered
 
         searchResultBackButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchResultBackButtonMouseEntered
 
-    private void searchResultBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchResultBackButtonMouseExited
+    private void searchResultBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-next:event_searchResultBackButtonMouseExited
 
         searchResultBackButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchResultBackButtonMouseExited
 
-    private void searchResultBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchResultBackButtonActionPerformed
+    private void searchResultBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_searchResultBackButtonActionPerformed
 
         containerPanel.removeAll();
         containerPanel.add(searchPanel);
@@ -2408,17 +2408,17 @@ public class Supervisor extends javax.swing.JFrame {
         containerPanel.revalidate();
     }//GEN-LAST:event_searchResultBackButtonActionPerformed
 
-    private void searchResultStudentBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchResultStudentBackButtonMouseEntered
+    private void searchResultStudentBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-next:event_searchResultStudentBackButtonMouseEntered
 
         searchResultStudentBackButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchResultStudentBackButtonMouseEntered
 
-    private void searchResultStudentBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchResultStudentBackButtonMouseExited
+    private void searchResultStudentBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-next:event_searchResultStudentBackButtonMouseExited
 
         searchResultStudentBackButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_searchResultStudentBackButtonMouseExited
 
-    private void searchResultStudentBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchResultStudentBackButtonActionPerformed
+    private void searchResultStudentBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_searchResultStudentBackButtonActionPerformed
 
         containerPanel.removeAll();
         if(comeFrom.equals("user")){
@@ -2430,17 +2430,17 @@ public class Supervisor extends javax.swing.JFrame {
         containerPanel.revalidate();
     }//GEN-LAST:event_searchResultStudentBackButtonActionPerformed
 
-    private void classBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBackButtonMouseEntered
+    private void classBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-next:event_classBackButtonMouseEntered
 
         classBackButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classBackButtonMouseEntered
 
-    private void classBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classBackButtonMouseExited
+    private void classBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-next:event_classBackButtonMouseExited
 
         classBackButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classBackButtonMouseExited
 
-    private void classBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classBackButtonActionPerformed
+    private void classBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_classBackButtonActionPerformed
 
         containerPanel.removeAll();
         containerPanel.add(classesPanel);
@@ -2457,7 +2457,7 @@ public class Supervisor extends javax.swing.JFrame {
         //call rest service and take the result
         SupervisorClassesReport_JerseyClient client = new SupervisorClassesReport_JerseyClient(this.id_user);
         String dataClasses = client.getJson();
-        if(dataClasses.isEmpty()){
+        if(dataClasses.equals("\"no-result\"")){
             classesErrorLabel.setText("No results found");
         }else{
             TypeToken<ArrayList<SupervisorClassesReportResult>> tokenExam = new TypeToken<ArrayList<SupervisorClassesReportResult>>() {};
@@ -2479,17 +2479,17 @@ public class Supervisor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_classBackButtonActionPerformed
 
-    private void classInsertButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classInsertButtonMouseEntered
+    private void classInsertButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-next:event_classInsertButtonMouseEntered
 
         classInsertButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classInsertButtonMouseEntered
 
-    private void classInsertButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classInsertButtonMouseExited
+    private void classInsertButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-next:event_classInsertButtonMouseExited
 
         classInsertButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classInsertButtonMouseExited
 
-    private void classInsertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classInsertButtonActionPerformed
+    private void classInsertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_classInsertButtonActionPerformed
 
         containerPanel.removeAll();
         containerPanel.add(insertClassPanel);
@@ -2500,17 +2500,17 @@ public class Supervisor extends javax.swing.JFrame {
         insertClassBackButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classInsertButtonActionPerformed
 
-    private void classRemoveButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classRemoveButtonMouseEntered
+    private void classRemoveButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-next:event_classRemoveButtonMouseEntered
   
         classRemoveButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classRemoveButtonMouseEntered
 
-    private void classRemoveButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classRemoveButtonMouseExited
+    private void classRemoveButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-next:event_classRemoveButtonMouseExited
 
         classRemoveButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classRemoveButtonMouseExited
 
-    private void classRemoveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classRemoveButtonActionPerformed
+    private void classRemoveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_classRemoveButtonActionPerformed
 
         containerPanel.removeAll();
         containerPanel.add(removeClassPanel);
@@ -2521,17 +2521,17 @@ public class Supervisor extends javax.swing.JFrame {
         removeClassBackButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classRemoveButtonActionPerformed
 
-    private void classStateButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classStateButtonMouseEntered
+    private void classStateButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-next:event_classStateButtonMouseEntered
 
         classStateButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classStateButtonMouseEntered
 
-    private void classStateButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_classStateButtonMouseExited
+    private void classStateButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-next:event_classStateButtonMouseExited
 
         classStateButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_classStateButtonMouseExited
 
-    private void classStateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classStateButtonActionPerformed
+    private void classStateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_classStateButtonActionPerformed
 
         //take the currect state of the exam, and switch to the next state
         try{
@@ -2561,7 +2561,7 @@ public class Supervisor extends javax.swing.JFrame {
                 + " and examination.id_examination = class.id_examination";
             ResultSet rs = statement.executeQuery(sql);
             String open = "";
-            if(rs.first()){
+            if(rs.next()){
                 classId_class.setText(rs.getString("class.id_class"));
                 classId_exam.setText(rs.getString("examination.id_examination"));
                 className.setText(rs.getString("class.name"));
@@ -2612,17 +2612,17 @@ public class Supervisor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_classStateButtonActionPerformed
 
-    private void insertClassSubmitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertClassSubmitButtonMouseEntered
+    private void insertClassSubmitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-next:event_insertClassSubmitButtonMouseEntered
 
         insertClassSubmitButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_insertClassSubmitButtonMouseEntered
 
-    private void insertClassSubmitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertClassSubmitButtonMouseExited
+    private void insertClassSubmitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-next:event_insertClassSubmitButtonMouseExited
 
         insertClassSubmitButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_insertClassSubmitButtonMouseExited
 
-    private void insertClassFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertClassFileButtonActionPerformed
+    private void insertClassFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_insertClassFileButtonActionPerformed
 
         int returnVal = fileChooser.showOpenDialog(Supervisor.this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -2655,7 +2655,7 @@ public class Supervisor extends javax.swing.JFrame {
                             String sql = "select * from user where username = '"+username+"' and "
                                 + "name = '"+name+"' and lastname = '"+lastname+"' and role = '2'";
                             ResultSet rs = statement.executeQuery(sql);
-                            if(rs.first()){
+                            if(rs.next()){
                                 if(rs.getString("id_user")!=null)
                                     id_user = rs.getString("id_user");
                             }
@@ -2664,7 +2664,7 @@ public class Supervisor extends javax.swing.JFrame {
                                 //check if the user is already in the class
                                 sql = "select count(*) from class_has_user where id_user = '"+id_user+"' and id_class = '"+id_class+"'";
                                 rs = statement.executeQuery(sql);
-                                if(rs.first()){
+                                if(rs.next()){
                                     alreadyIn = rs.getInt("count(*)");
                                 }
                                 rs.close();
@@ -2730,21 +2730,21 @@ public class Supervisor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_insertClassFileButtonActionPerformed
 
-    private void insertClassUsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertClassUsernameTextFieldActionPerformed
+    private void insertClassUsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_insertClassUsernameTextFieldActionPerformed
 
     }//GEN-LAST:event_insertClassUsernameTextFieldActionPerformed
 
-    private void insertClassBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertClassBackButtonMouseEntered
+    private void insertClassBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-next:event_insertClassBackButtonMouseEntered
 
         insertClassBackButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_insertClassBackButtonMouseEntered
 
-    private void insertClassBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertClassBackButtonMouseExited
+    private void insertClassBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-next:event_insertClassBackButtonMouseExited
 
         insertClassBackButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_insertClassBackButtonMouseExited
 
-    private void insertClassBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertClassBackButtonActionPerformed
+    private void insertClassBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_insertClassBackButtonActionPerformed
 
         containerPanel.removeAll();
         containerPanel.add(classPanel);
@@ -2759,7 +2759,7 @@ public class Supervisor extends javax.swing.JFrame {
                     + " and examination.id_examination = class.id_examination";
                 ResultSet rs = statement.executeQuery(sql);
                 String open = "";
-                if(rs.first()){
+                if(rs.next()){
                     classId_class.setText(rs.getString("class.id_class"));
                     classId_exam.setText(rs.getString("examination.id_examination"));
                     className.setText(rs.getString("class.name"));
@@ -2810,7 +2810,7 @@ public class Supervisor extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_insertClassBackButtonActionPerformed
 
-    private void insertClassSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertClassSubmitButtonActionPerformed
+    private void insertClassSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_insertClassSubmitButtonActionPerformed
 
         String username = insertClassUsernameTextField.getText();
         String name = insertClassNameTextField.getText();
@@ -2830,7 +2830,7 @@ public class Supervisor extends javax.swing.JFrame {
                     String sql = "select * from user where username = '"+username+"' and "
                         + "name = '"+name+"' and lastname = '"+lastname+"' and role = '2'";
                     ResultSet rs = statement.executeQuery(sql);
-                    if(rs.first()){
+                    if(rs.next()){
                         if(rs.getString("id_user")!=null)
                             id_user = rs.getString("id_user");
                     }
@@ -2839,7 +2839,7 @@ public class Supervisor extends javax.swing.JFrame {
                         //check if the user is already in the class
                         sql = "select count(*) from class_has_user where id_user = '"+id_user+"' and id_class = '"+id_class+"'";
                         rs = statement.executeQuery(sql);
-                        if(rs.first()){
+                        if(rs.next()){
                             alreadyIn = rs.getInt("count(*)");
                         }
                         rs.close();
@@ -2868,21 +2868,21 @@ public class Supervisor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_insertClassSubmitButtonActionPerformed
 
-    private void removeClassUsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeClassUsernameTextFieldActionPerformed
+    private void removeClassUsernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_removeClassUsernameTextFieldActionPerformed
 
     }//GEN-LAST:event_removeClassUsernameTextFieldActionPerformed
 
-    private void removeClassSubmitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeClassSubmitButtonMouseEntered
+    private void removeClassSubmitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-next:event_removeClassSubmitButtonMouseEntered
 
         removeClassSubmitButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_removeClassSubmitButtonMouseEntered
 
-    private void removeClassSubmitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeClassSubmitButtonMouseExited
+    private void removeClassSubmitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-next:event_removeClassSubmitButtonMouseExited
 
         removeClassSubmitButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_removeClassSubmitButtonMouseExited
 
-    private void removeClassSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeClassSubmitButtonActionPerformed
+    private void removeClassSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_removeClassSubmitButtonActionPerformed
 
         String username = removeClassUsernameTextField.getText();
         String name = removeClassNameTextField.getText();
@@ -2902,7 +2902,7 @@ public class Supervisor extends javax.swing.JFrame {
                     String sql = "select * from user where username = '"+username+"' and "
                         + "name = '"+name+"' and lastname = '"+lastname+"' and role = '2'";
                     ResultSet rs = statement.executeQuery(sql);
-                    if(rs.first()){
+                    if(rs.next()){
                         if(rs.getString("id_user")!=null)
                             id_user = rs.getString("id_user");
                     }
@@ -2911,7 +2911,7 @@ public class Supervisor extends javax.swing.JFrame {
                         //check if the user is  in the class
                         sql = "select count(*) from class_has_user where id_user = '"+id_user+"' and id_class = '"+id_class+"'";
                         rs = statement.executeQuery(sql);
-                        if(rs.first()){
+                        if(rs.next()){
                             alreadyIn = rs.getInt("count(*)");
                         }
                         rs.close();
@@ -2940,7 +2940,7 @@ public class Supervisor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_removeClassSubmitButtonActionPerformed
 
-    private void removeClassFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeClassFileButtonActionPerformed
+    private void removeClassFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_removeClassFileButtonActionPerformed
  
          int returnVal = fileChooser.showOpenDialog(Supervisor.this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -2973,7 +2973,7 @@ public class Supervisor extends javax.swing.JFrame {
                             String sql = "select * from user where username = '"+username+"' and "
                                 + "name = '"+name+"' and lastname = '"+lastname+"' and role = '2'";
                             ResultSet rs = statement.executeQuery(sql);
-                            if(rs.first()){
+                            if(rs.next()){
                                 if(rs.getString("id_user")!=null)
                                     id_user = rs.getString("id_user");
                             }
@@ -2982,7 +2982,7 @@ public class Supervisor extends javax.swing.JFrame {
                                 //check if the user is  in the class
                                 sql = "select count(*) from class_has_user where id_user = '"+id_user+"' and id_class = '"+id_class+"'";
                                 rs = statement.executeQuery(sql);
-                                if(rs.first()){
+                                if(rs.next()){
                                     alreadyIn = rs.getInt("count(*)");
                                 }
                                 rs.close();
@@ -3048,17 +3048,17 @@ public class Supervisor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_removeClassFileButtonActionPerformed
 
-    private void removeClassBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeClassBackButtonMouseEntered
+    private void removeClassBackButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-next:event_removeClassBackButtonMouseEntered
 
         removeClassBackButton.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_removeClassBackButtonMouseEntered
 
-    private void removeClassBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeClassBackButtonMouseExited
+    private void removeClassBackButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-next:event_removeClassBackButtonMouseExited
 
         removeClassBackButton.setBorder(BorderFactory.createMatteBorder(0,1,0,1,Color.decode("0x448AFF")));
     }//GEN-LAST:event_removeClassBackButtonMouseExited
 
-    private void removeClassBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeClassBackButtonActionPerformed
+    private void removeClassBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_removeClassBackButtonActionPerformed
 
         containerPanel.removeAll();
         containerPanel.add(classPanel);
@@ -3073,7 +3073,7 @@ public class Supervisor extends javax.swing.JFrame {
                     + " and examination.id_examination = class.id_examination";
                 ResultSet rs = statement.executeQuery(sql);
                 String open = "";
-                if(rs.first()){
+                if(rs.next()){
                     classId_class.setText(rs.getString("class.id_class"));
                     classId_exam.setText(rs.getString("examination.id_examination"));
                     className.setText(rs.getString("class.name"));
@@ -3124,7 +3124,7 @@ public class Supervisor extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_removeClassBackButtonActionPerformed
 
-    private void classDownloadReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classDownloadReportButtonActionPerformed
+    private void classDownloadReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_classDownloadReportButtonActionPerformed
         SupervisorClassReportResult[] report = null;
         String id_class = id_classSelected;
         try {
@@ -3139,7 +3139,7 @@ public class Supervisor extends javax.swing.JFrame {
             String sql = "select * from class,examination where class.id_examination = "
                     + "examination.id_examination and class.id_class = '"+id_class+"'";
             rs = statement.executeQuery(sql);
-            if(rs.first()){
+            if(rs.next()){
                 open = rs.getString("examination.open");
             }
             rs.close();
@@ -3148,7 +3148,7 @@ public class Supervisor extends javax.swing.JFrame {
                     + "class_has_user.id_class = '"+id_class+"' and class_has_user.id_user = user.id_user"
                     + " and user.role = '2'";
             rs = statement.executeQuery(sql);
-            if(rs.first()){
+            if(rs.next()){
                 numberOfStudents = rs.getInt("count(distinct user.id_user)");
             }
             rs.close();
