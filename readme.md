@@ -32,10 +32,11 @@ Concept project of an online examinations system.
 - Import git project and clone it
 - Go to DatabaseInfo folder, take the db script and run the query into your localhost database
 - Go to examination_centers.database package and change the host database, password and username with your localhost credencials
-- Start a TomEE PLUS 9v server (because we're using Jax-rs for the restfull wb) that's working on the localhost:8080
+- Start a TomEE PLUS 9v server (because we're using Jax-rs for the restfull wb)
 - Create an Admin record in your database (role field = 0) to access the system as admin
 - Start the Login.java file from the examination_centers.desktop_app to open the desktop application of the project
 - Type http://localhost:8080/ExaminationCenters/index.jsp to start the web application of the system
+- As an admin, you can go to the DatabaseInfo/ExcelDataFillers folder to upload records of data and not insert them hard-coded
 
 ## Info about the project's concept
 

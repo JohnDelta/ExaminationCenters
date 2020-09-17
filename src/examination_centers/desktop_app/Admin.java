@@ -500,7 +500,7 @@ public class Admin extends javax.swing.JFrame {
 
         classesButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         classesButton.setForeground(new java.awt.Color(255, 255, 255));
-        classesButton.setText("Examination Centers");
+        classesButton.setText("Classes");
         classesButton.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(68, 138, 255)));
         classesButton.setContentAreaFilled(false);
         classesButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -538,7 +538,7 @@ public class Admin extends javax.swing.JFrame {
 
         subjectsButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         subjectsButton.setForeground(new java.awt.Color(255, 255, 255));
-        subjectsButton.setText("Classes");
+        subjectsButton.setText("Subjects");
         subjectsButton.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(68, 138, 255)));
         subjectsButton.setContentAreaFilled(false);
         subjectsButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1273,7 +1273,7 @@ public class Admin extends javax.swing.JFrame {
         insertSupervisorsLastnameLabel.setText("Lastname");
 
         insertSupervisorsId_classLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        insertSupervisorsId_classLabel.setText("Exam Center ID");
+        insertSupervisorsId_classLabel.setText("Class ID");
 
         javax.swing.GroupLayout insertSupervisorsPanelLayout = new javax.swing.GroupLayout(insertSupervisorsPanel);
         insertSupervisorsPanel.setLayout(insertSupervisorsPanelLayout);
@@ -1397,7 +1397,7 @@ public class Admin extends javax.swing.JFrame {
         classesMenuPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         removeClassesButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        removeClassesButton.setText("Remove Exam Centers");
+        removeClassesButton.setText("Remove Classes");
         removeClassesButton.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 1, new java.awt.Color(68, 138, 255)));
         removeClassesButton.setContentAreaFilled(false);
         removeClassesButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1415,7 +1415,7 @@ public class Admin extends javax.swing.JFrame {
         });
 
         insertClassesButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        insertClassesButton.setText("Add Exam Centers");
+        insertClassesButton.setText("Add Classes");
         insertClassesButton.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 1, new java.awt.Color(68, 138, 255)));
         insertClassesButton.setContentAreaFilled(false);
         insertClassesButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1465,7 +1465,7 @@ public class Admin extends javax.swing.JFrame {
         insertClassesTitle2Label.setText("Excel Data");
 
         insertClassesId_classLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        insertClassesId_classLabel.setText("Exam Center ID");
+        insertClassesId_classLabel.setText("Class ID");
 
         insertClassesId_classTextField.setBackground(new java.awt.Color(241, 241, 241));
         insertClassesId_classTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -1627,7 +1627,7 @@ public class Admin extends javax.swing.JFrame {
         removeClassesTitle2Label.setText("Excel Data");
 
         removeClassesId_classLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        removeClassesId_classLabel.setText("Exam Center ID");
+        removeClassesId_classLabel.setText("Class ID");
 
         removeClassesId_classTextField.setBackground(new java.awt.Color(241, 241, 241));
         removeClassesId_classTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -1798,7 +1798,7 @@ public class Admin extends javax.swing.JFrame {
         insertExamsId_subjectComboBox.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         insertExamsId_subjectLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        insertExamsId_subjectLabel.setText("Class ID");
+        insertExamsId_subjectLabel.setText("Subject ID");
 
         insertExamsDayTextField.setBackground(new java.awt.Color(241, 241, 241));
         insertExamsDayTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -2129,7 +2129,7 @@ public class Admin extends javax.swing.JFrame {
         insertSubjectsTitle2Label.setText("Excel Data");
 
         insertSubjectsId_subjectLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        insertSubjectsId_subjectLabel.setText("Class ID");
+        insertSubjectsId_subjectLabel.setText("Subject ID");
 
         insertSubjectsSubjectTitleLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         insertSubjectsSubjectTitleLabel.setText("Title");
@@ -2259,7 +2259,7 @@ public class Admin extends javax.swing.JFrame {
         removeSubjectsTitle2Label.setText("Excel Data");
 
         removeSubjectsId_subjectLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        removeSubjectsId_subjectLabel.setText("Examination ID");
+        removeSubjectsId_subjectLabel.setText("Subject ID");
 
         removeSubjectsId_subjectTextField.setBackground(new java.awt.Color(241, 241, 241));
         removeSubjectsId_subjectTextField.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -2355,7 +2355,7 @@ public class Admin extends javax.swing.JFrame {
         subjectsMenuPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         removeSubjectsButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        removeSubjectsButton.setText("Remove Classes");
+        removeSubjectsButton.setText("Remove Subjects");
         removeSubjectsButton.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 1, new java.awt.Color(68, 138, 255)));
         removeSubjectsButton.setContentAreaFilled(false);
         removeSubjectsButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2373,7 +2373,7 @@ public class Admin extends javax.swing.JFrame {
         });
 
         insertSubjectsButton.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        insertSubjectsButton.setText("Add Classes");
+        insertSubjectsButton.setText("Add Subjects");
         insertSubjectsButton.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 1, new java.awt.Color(68, 138, 255)));
         insertSubjectsButton.setContentAreaFilled(false);
         insertSubjectsButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2508,7 +2508,7 @@ public class Admin extends javax.swing.JFrame {
         insertQuestionsQuestionLabel.setText("Question");
 
         insertQuestionsId_subjectLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        insertQuestionsId_subjectLabel.setText("Class ID");
+        insertQuestionsId_subjectLabel.setText("Subject ID");
 
         insertQuestionsId_subjectComboBox.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
@@ -2971,7 +2971,7 @@ public class Admin extends javax.swing.JFrame {
     }
 
     reportsClassesTitleLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    reportsClassesTitleLabel.setText("Student's exam results by exam center ID");
+    reportsClassesTitleLabel.setText("Student's exam results by Class ID");
 
     reportsClassesDownloadButton.setText("Download");
     reportsClassesDownloadButton.addActionListener(new java.awt.event.ActionListener() {
@@ -3415,9 +3415,7 @@ public class Admin extends javax.swing.JFrame {
                             modelResult.removeRow(x);
                         }
 
-                        Class.forName("com.mysql.jdbc.Driver");
-                        String database = "jdbc:mysql://localhost:3306/examination_centers?user=root&password=026849";
-                        Connection connection = DriverManager.getConnection(database);
+                        Connection connection = new Database().getConnection();
                         Statement statement = connection.createStatement();
                         Statement statement2 = connection.createStatement();
                         String sql = "";
@@ -3445,7 +3443,7 @@ public class Admin extends javax.swing.JFrame {
                         rs.close();
                         //if the class is active or initial do not show exam data else show them
                         if(open.equals("1") || open.equals("0")){
-                            searchResultStudentTitle2Label.setText("Ο χρήστης δεν έχει Marks. Η εξέταση δεν έχει ολοκληρωθεί");
+                            searchResultStudentTitle2Label.setText("User doesn't have marks, the exam hasn't been over yet");
                         }else if(open.equals("2")){
                             //check if the user participated to the exam
                             sql = "select count(*) from class_has_user where id_user = '"+id_user+"' and"
@@ -3457,9 +3455,9 @@ public class Admin extends javax.swing.JFrame {
                             rs.close();
                             if(c==1){
                                 //user does not have any questions
-                                searchResultStudentTitle2Label.setText("Η εξέταση ολοκληρώθηκε και ο χρήστης δεν συμμετείχε");
+                                searchResultStudentTitle2Label.setText("User didn't participate in this exam");
                             }else{
-                                searchResultStudentTitle2Label.setText("Η αναλυτική βαθμολογία του of student για την εξέταση");
+                                searchResultStudentTitle2Label.setText("User's results");
                                 //take the user's questions
                                 sql = "select * from class_has_user where id_user = '"+id_user+"' and"
                                 + " id_class = '"+id_class+"'";
@@ -3494,7 +3492,7 @@ public class Admin extends javax.swing.JFrame {
                     }
                     connection.close();
                 }
-            }catch(SQLException | ClassNotFoundException err){
+            }catch(SQLException err){
                 err.printStackTrace();
             }
         }
@@ -3641,7 +3639,7 @@ public class Admin extends javax.swing.JFrame {
 
         },
         new String [] {
-            "Question", "Απάντηση", "Ημερομηνία", "Ορθότητα"
+            "Question", "Answer", "Date", "Correct"
         }
     ) {
         Class[] types = new Class [] {
@@ -3738,7 +3736,7 @@ public class Admin extends javax.swing.JFrame {
     searchResultStudentId_class.setOpaque(true);
 
     searchResultStudentId_classLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-    searchResultStudentId_classLabel.setText("Exam Center ID");
+    searchResultStudentId_classLabel.setText("Class ID");
 
     searchResultStudentId_exam.setBackground(new java.awt.Color(241, 241, 241));
     searchResultStudentId_exam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -4187,11 +4185,11 @@ public class Admin extends javax.swing.JFrame {
                 || address.isEmpty() || email.isEmpty() || role.isEmpty()){
             insertUsersErrorLabel.setText("All fields must be filled");
         }else{
-            String regex_n = "[a-zA-Z0-9]{5,50}";
-            String regex_a = "[a-zA-Z0-9.,]{5,50}";
-            String regex_e = "[a-zA-Z0-9.,@]{5,50}";
+            String regex_n = "[a-zA-Z0-9]{4,50}";
+            String regex_a = "[a-zA-Z0-9.,]{4,50}";
+            String regex_e = "[a-zA-Z0-9.,@]{4,50}";
             if(!username.matches(regex_n) || !password.matches(regex_n) || !name.matches(regex_n) ||
-                    !lastname.matches(regex_n) || !phone.matches("[0-9]{5,12}") || !address.matches(regex_a) ||
+                    !lastname.matches(regex_n) || !phone.matches("[0-9]{4,12}") || !address.matches(regex_a) ||
                     !email.matches(regex_e)){
                 insertUsersErrorLabel.setText("Fields must contains only apharithmetics with length in the range 5-50");
             }else{
@@ -4495,7 +4493,7 @@ public class Admin extends javax.swing.JFrame {
         if(username.isEmpty() || name.isEmpty() || lastname.isEmpty()){
             removeUsersErrorLabel.setText("All fields must be filled");
         }else{
-            String regex = "[a-zA-Z]{5,}[a-zA-Z0-9]*";
+            String regex = "[a-zA-Z]{4,}[a-zA-Z0-9]*";
             if(!username.matches(regex) || !name.matches(regex) || !lastname.matches(regex)){
                 removeUsersErrorLabel.setText("Only alpharithmetics longer than 5 characters allowed");
             }else{
@@ -4892,19 +4890,18 @@ public class Admin extends javax.swing.JFrame {
                             //delete now the class
                             sql = "delete from class where id_class = '"+id_class+"'";
                             statement.executeUpdate(sql);
-                            removeClassesErrorLabel.setText("The examination centers has been deleted");
+                            removeClassesErrorLabel.setText("The class has been deleted");
                         }else{
-                           removeClassesErrorLabel.setText("Το εξεταστικό κέντρο δεν μπορεί να διαγραφεί : Υπάρχουν"
-                                    + " ακόμα χρήστες εγγεγραμμένοι σε αυτό");
+                           removeClassesErrorLabel.setText("Cannot delete this class. Users are still assigned into it");
                         }
                     }else{
-                        removeClassesErrorLabel.setText("Το εξεταστικό κέντρο με αυτό τον κωδικό δεν υπάρχε");
+                        removeClassesErrorLabel.setText("Cannot find examination center with this ID");
                     }
                 }catch(SQLException e){
                     e.printStackTrace();
                 }
             }else{
-                removeClassesErrorLabel.setText("Το πεδίο μπορεί να είναι μόνο αριθμός");
+                removeClassesErrorLabel.setText("Only numbers are allowed in the fields");
             }
         }
     }//GEN-LAST:event_removeClassesSubmitButtonActionPerformed
@@ -5133,7 +5130,7 @@ public class Admin extends javax.swing.JFrame {
                         connection.rollback();
                     }else{
                         if(entries==(rows-1)){
-                            msg="Procedure completed : "+entries+" records added";
+                            msg="Procedure completed : "+entries+" records removed";
                             connection.commit();
                         }else{
                             connection.rollback();
@@ -5393,14 +5390,12 @@ public class Admin extends javax.swing.JFrame {
         String title = insertSubjectsTitleTextField.getText();
         String description = insertSubjectsDescriptionTextArea.getText();
         if(id_subject.isEmpty() || title.isEmpty() || description.isEmpty()){
-            insertSubjectsErrorLabel.setText("Συπληρώστε πρώτα τα πεδία");
+            insertSubjectsErrorLabel.setText("All fields must be filled");
         }else{
             if(id_subject.matches("[0-9]{1,10}") && title.matches("[a-zA-Z0-9\\+,. ]{1,50}")
                     && description.matches("[a-zA-Z0-9\\+,. ]{1,100}")){
                 try{
-                    Class.forName("com.mysql.jdbc.Driver");
-                    String database = "jdbc:mysql://localhost:3306/examination_centers?user=root&password=026849";
-                    Connection connection = DriverManager.getConnection(database);
+                    Connection connection = new Database().getConnection();
                     Statement statement = connection.createStatement();
                     //check if the id_subject already exists
                     boolean flag = false;
@@ -5417,16 +5412,16 @@ public class Admin extends javax.swing.JFrame {
                         sql = "insert into subject(id_subject,title,description) values"
                                 + "('"+id_subject+"','"+title+"','"+description+"')";
                         statement.executeUpdate(sql);
-                        insertSubjectsErrorLabel.setText("Η εισαγωγή του μαθήματος ολοκληρώθηκε");
+                        insertSubjectsErrorLabel.setText("Subject has been added");
                     }else{
-                        insertSubjectsErrorLabel.setText("Το μάθημα με αυτό τον κωδικό υπάρχει ήδη");
+                        insertSubjectsErrorLabel.setText("Subject with this ID already exist");
                     }
                     connection.close();
-                }catch(ClassNotFoundException | SQLException e){
+                }catch(SQLException e){
                     e.printStackTrace();
                 }
             }else{
-                insertSubjectsErrorLabel.setText("Δεν επιτρέπονται τα σύμβολα, Ο Title πρέπει να έιναι μέχρι 50 χαρακτήρες και η Description μέχρι 100");
+                insertSubjectsErrorLabel.setText("Only alpharithmetics are allowed in the fields");
             }
         }
     }//GEN-LAST:event_insertSubjectsSubmitButtonActionPerformed
@@ -5498,7 +5493,7 @@ public class Admin extends javax.swing.JFrame {
                         connection.rollback();
                     }else{
                         if(entries==(rows-1)){
-                            msg="Procedure completed : "+entries+" records added";
+                            msg="Procedure completed : "+entries+" records removed";
                             connection.commit();
                         }else{
                             connection.rollback();
@@ -5811,8 +5806,8 @@ public class Admin extends javax.swing.JFrame {
                 || question.isEmpty() || id_subject.isEmpty()){
             insertQuestionsErrorLabel.setText("All fields must be filled");
         }else{
-            String regex_a = "[a-zA-Z0-9,.;?'\"]{1, 500}";
-            String regex_q = "[a-zA-Z0-9,.;?'\"]{1, 500}";
+            String regex_a = "[a-zA-Z0-9,.;?'\"]{1,500}";
+            String regex_q = "[a-zA-Z0-9,.;?'\"]{1,500}";
             if(id_question.matches("[0-9]{1,10}") && question.matches(regex_q) && answer1.matches(regex_a)
                     && answer2.matches(regex_a) && answer3.matches(regex_a) && answer4.matches(regex_a)
                     && correct.matches(regex_a)){
@@ -6346,7 +6341,7 @@ public class Admin extends javax.swing.JFrame {
 
     private void searchSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_searchSubmitButtonActionPerformed
 
-        String regex = "[a-zA-Z]{5,}[a-zA-Z0-9]*";
+        String regex = "[a-zA-Z]{4,}[a-zA-Z0-9]*";
         String username = searchUsernameTextField.getText();
         String name = searchNameTextField.getText();
         String lastname = searchLastnameTextField.getText();
@@ -6633,7 +6628,7 @@ public class Admin extends javax.swing.JFrame {
 
     private void insertSupervisorsSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-next:event_insertSupervisorsSubmitButtonActionPerformed
   
-        String regex = "[a-zA-Z]{5,}[a-zA-Z0-9]*";
+        String regex = "[a-zA-Z]{4,}[a-zA-Z0-9]*";
         String username = insertSupervisorsUsernameTextField.getText();
         String name = insertSupervisorsNameTextField.getText();
         String lastname = insertSupervisorsLastnameTextField.getText();
