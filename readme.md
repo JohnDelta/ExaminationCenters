@@ -18,7 +18,8 @@ Concept project of an online examinations system.
 - Database: MySQL | mysql-connector-java
 - Access Microsoft Format Files: POI 3.17 & POI-OOXLM
 - Json: Gson 2.8.5
-- Types that extend the Java Collections Framework: Commons.Collections 4
+- Types that extend the Java Collections Framework: Commons.Collections 4, Commons.io, Commons.fileupload
+- Jquery (for the website. Using CDN to import it)
 
 ## Package info - structure:
 - WebContent (website)
