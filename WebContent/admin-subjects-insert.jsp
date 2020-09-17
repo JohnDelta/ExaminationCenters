@@ -102,7 +102,7 @@ if(!user.equals("admin")){
                                     boolean flag = false;
                                     String sql = "select count(*) from subject where id_subject = '"+id_subject+"'";
                                     ResultSet rs = statement.executeQuery(sql);
-                                    if(rs.first()){
+                                    if(rs.next()){
                                         if(rs.getInt("count(*)")==0){
                                             flag = true;
                                         }

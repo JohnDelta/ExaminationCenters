@@ -100,7 +100,7 @@ if(!user.equals("admin")){
                                             + "and lastname = '"+lastname+"' and name = '"+name+"' and role='1'";
                                     ResultSet rs = statement.executeQuery(sql);
                                     boolean flag = true;
-                                    if(rs.first()){
+                                    if(rs.next()){
                                         if(rs.getInt("count(*)")==0)
                                             flag = false;
                                     }
@@ -109,7 +109,7 @@ if(!user.equals("admin")){
                                         //take users id
                                         sql = "select * from user where username = '"+username+"'";
                                         rs = statement.executeQuery(sql);
-                                        if(rs.first()){
+                                        if(rs.next()){
                                             id_user = rs.getString("id_user");
                                         }
                                         rs.close();
@@ -117,7 +117,7 @@ if(!user.equals("admin")){
                                         sql = "select count(*) from class_has_user where id_class = '"+id_class+"' and id_user = '"+id_user+"'";
                                         rs = statement.executeQuery(sql);
                                         flag = false;
-                                        if(rs.first()){
+                                        if(rs.next()){
                                             if(rs.getInt("count(*)")==0){
                                                 flag = true;
                                             }

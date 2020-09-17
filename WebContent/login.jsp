@@ -10,7 +10,7 @@
         try{
             String sql = "select * from user where username='"+username+"' and password='"+password+"'";
             ResultSet result = statement.executeQuery(sql);
-            if(result.first()){
+            if(result.next()){
                 session.setAttribute("id_user", result.getString("id_user"));
                 session.setAttribute("name", result.getString("name"));
                 session.setAttribute("role", result.getString("role"));

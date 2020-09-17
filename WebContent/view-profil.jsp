@@ -74,7 +74,7 @@ if(!user.equals("supervisor") && !user.equals("admin")){
                 sql = "select count(*) from user where name = '"+name+"' and username = '"+username+"'"
                         + " and lastname = '"+lastname+"'";
                 rs = statement.executeQuery(sql);
-                if(rs.first()){
+                if(rs.next()){
                     if(rs.getInt("count(*)")<1)
                         flag = false;
                 }
@@ -83,7 +83,7 @@ if(!user.equals("supervisor") && !user.equals("admin")){
                     sql = "select * from user where name = '"+name+"' and username = '"+username+"'"
                         + " and lastname = '"+lastname+"'";
                     rs = statement.executeQuery(sql);
-                    if(rs.first()){
+                    if(rs.next()){
                         id_user = rs.getString("id_user");
                         phone = rs.getString("phone");
                         address = rs.getString("address");
@@ -125,7 +125,7 @@ if(!user.equals("supervisor") && !user.equals("admin")){
                 sql = "select count(distinct id_class) from class_has_user where id_user = '"+id_user+"'";
                 rs = statement.executeQuery(sql);
                 flag = false;
-                if(rs.first()){
+                if(rs.next()){
                     if(rs.getInt("count(distinct id_class)")>0){
                         flag = true;
                     }
@@ -139,7 +139,7 @@ if(!user.equals("supervisor") && !user.equals("admin")){
                             + " class.id_examination = examination.id_examination"
                             + " and examination.id_subject = subject.id_subject group by class.id_class";
                     rs = statement.executeQuery(sql);
-                    out.print("<table class='table-first'><tr>"
+                    out.print("<table class='table-next'><tr>"
                         + "<td>Κωδικός Κέντρου</td>"
                         + "<td>Όνομα Κέντρου</td>"
                         + "<td>Μάθημα</td>"
@@ -178,7 +178,7 @@ if(!user.equals("supervisor") && !user.equals("admin")){
                 sql = "select count(distinct id_class) from class_has_user where id_user = '"+id_user+"'";
                 rs = statement.executeQuery(sql);
                 flag = false;
-                if(rs.first()){
+                if(rs.next()){
                     if(rs.getInt("count(distinct id_class)")>0){
                         flag = true;
                     }
@@ -191,7 +191,7 @@ if(!user.equals("supervisor") && !user.equals("admin")){
                         + " class.id_examination = examination.id_examination"
                         + " and examination.id_subject = subject.id_subject";
                     rs = statement.executeQuery(sql);
-                    out.print("<table class='table-first'><tr>"
+                    out.print("<table class='table-next'><tr>"
                         + "<td>Κωδικός Κέντρου</td>"
                         + "<td>Εξεταστικό Κέντρο</td>"
                         + "<td>Μάθημα</td>"

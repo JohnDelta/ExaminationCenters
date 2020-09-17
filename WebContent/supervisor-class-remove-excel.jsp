@@ -99,7 +99,7 @@ if(!user.equals("supervisor") && session.getAttribute("id_class")!=null){
                                     String sql = "select * from user where username = '"+usernameExcel+"' and "
                                         + "name = '"+nameExcel+"' and lastname = '"+lastnameExcel+"' and role = '2'";
                                     ResultSet rs = statement.executeQuery(sql);
-                                    if(rs.first()){
+                                    if(rs.next()){
                                         if(rs.getString("id_user")!=null)
                                             id_userExcel = rs.getString("id_user");
                                     }
@@ -109,7 +109,7 @@ if(!user.equals("supervisor") && session.getAttribute("id_class")!=null){
                                         sql = "select count(*) from class_has_user where"
                                                 + " id_user = '"+id_userExcel+"' and id_class = '"+id_classExcel+"'";
                                         rs = statement.executeQuery(sql);
-                                        if(rs.first()){
+                                        if(rs.next()){
                                             alreadyInExcel = rs.getInt("count(*)");
                                         }
                                         rs.close();

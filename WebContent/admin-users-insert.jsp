@@ -101,7 +101,7 @@ if(!user.equals("admin")){
                                     String sql = "select count(*) from user where username = '"+username+"'";
                                     ResultSet rs = statement.executeQuery(sql);
                                     boolean flag = false;
-                                    if(rs.first()){
+                                    if(rs.next()){
                                         if(rs.getInt("count(*)")==0)
                                             flag = true;
                                     }

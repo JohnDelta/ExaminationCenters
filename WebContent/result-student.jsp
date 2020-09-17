@@ -77,7 +77,7 @@ if(!user.equals("supervisor") && !user.equals("admin")){
                     id_class = request.getParameter("id_class").toString();
                     sql = "select * from user where id_user = '"+id_user+"'";
                     rs = statement.executeQuery(sql);
-                    if(rs.first()){
+                    if(rs.next()){
                         username = rs.getString("username");
                         name = rs.getString("name");
                         lastname = rs.getString("lastname");
@@ -95,7 +95,7 @@ if(!user.equals("supervisor") && !user.equals("admin")){
                     }else if(request.getParameter("supervisorClass")!=null){
                         sql = "select * from class where id_class = '"+id_class+"'";
                         rs = statement.executeQuery(sql);
-                        if(rs.first()){
+                        if(rs.next()){
                             titles = "Εξεταστικό Κέντρο : "+rs.getString("name")+" | Διεύθυνση : "
                                 + rs.getString("address") + " | Κωδικός : "+rs.getString("id_class");
                         }
@@ -126,7 +126,7 @@ if(!user.equals("supervisor") && !user.equals("admin")){
                             sql = "select count(*) from class_has_user where id_user = '"+id_user+"'"
                                     + "and id_class = '"+id_class+"'";
                             rs = statement.executeQuery(sql);
-                            if(rs.first()){
+                            if(rs.next()){
                                 if(rs.getInt("count(*)")<1){
                                     flag = false;
                                 }
@@ -136,7 +136,7 @@ if(!user.equals("supervisor") && !user.equals("admin")){
                                     +" id_user = '"+session.getAttribute("id_user")+"'"
                                     + "and id_class = '"+id_class+"'";
                             rs = statement.executeQuery(sql);
-                            if(rs.first()){
+                            if(rs.next()){
                                 if(rs.getInt("count(*)")<1){
                                     flag = false;
                                 }
@@ -154,13 +154,13 @@ if(!user.equals("supervisor") && !user.equals("admin")){
                         //get his class data
                         sql = "select * from class where id_class = '"+id_class+"'";
                         rs = statement.executeQuery(sql);
-                        if(rs.first()){
+                        if(rs.next()){
                             id_examination = rs.getString("id_examination");
                         }
                         rs.close();
                         sql = "select * from examination where id_examination = '"+id_examination+"'";
                         rs = statement.executeQuery(sql);
-                        if(rs.first()){
+                        if(rs.next()){
                             open = rs.getString("open");
                         }
                         rs.close();
@@ -173,7 +173,7 @@ if(!user.equals("supervisor") && !user.equals("admin")){
                             sql = "select count(*) from class_has_user where id_user = '"+id_user+"' and"
                                     + " id_class = '"+id_class+"'";
                             rs = statement.executeQuery(sql);
-                            if(rs.first()){
+                            if(rs.next()){
                                 c = rs.getInt("count(*)");
                             }
                             rs.close();
@@ -192,7 +192,7 @@ if(!user.equals("supervisor") && !user.equals("admin")){
                                 //set-up the table
                                 %>
                                 <table>
-                                <tr class="table-first">
+                                <tr class="table-next">
                                     <td>Ερώτηση</td>
                                     <td>Απάντηση Χρήστη</td>
                                     <td>Ημερομηνία Απάντησης</td>
@@ -205,7 +205,7 @@ if(!user.equals("supervisor") && !user.equals("admin")){
                                     //find the question
                                     sql = "select question from question where id_question = '"+rs.getString("id_question")+"'";
                                     rs2 = statement2.executeQuery(sql);
-                                    if(rs2.first()){
+                                    if(rs2.next()){
                                         question = rs2.getString("question");
                                     }
                                     rs2.close();

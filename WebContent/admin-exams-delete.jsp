@@ -94,7 +94,7 @@ if(!user.equals("admin")){
                                     boolean flag = true;
                                     String sql = "select count(*) from examination where id_examination = '"+id_examination+"'";
                                     ResultSet rs = statement.executeQuery(sql);
-                                    if(rs.first()){
+                                    if(rs.next()){
                                         if(rs.getInt("count(*)")==0){
                                             flag = false;
                                         }
@@ -105,7 +105,7 @@ if(!user.equals("admin")){
                                         flag = false;
                                         sql = "select count(*) from class where id_examination = '"+id_examination+"'";
                                         rs = statement.executeQuery(sql);
-                                        if(rs.first()){
+                                        if(rs.next()){
                                             if(rs.getInt("count(*)")==0){
                                                 flag = true;
                                             }

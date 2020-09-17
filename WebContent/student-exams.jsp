@@ -41,7 +41,7 @@ if(!user.equals("student")){
                 boolean hasClasses=false;
                 String sql = "select count(*) from class_has_user where id_user = '"+id_user+"'";
                 ResultSet rs = statement.executeQuery(sql);
-                if(rs.first()){
+                if(rs.next()){
                     if(rs.getInt("count(*)")>0){
                         hasClasses = true;
                     }
@@ -53,7 +53,7 @@ if(!user.equals("student")){
                 Απαντήστε στις ερωτήσεις μεταξύ του επιτρεπτού χρόνου εξέτασης διαφορετικά τα αποτελέσματα
                 θα μετρηθούν ως λανθασμένα!</p>
             <table>
-                <tr class="table-first">
+                <tr class="table-next">
                     <td>Εξεταστικό Κέντρο</td>
                     <td>Κωδικός Εξέτασης</td>
                     <td>Τίτλος Μαθήματος</td>

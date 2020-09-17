@@ -97,7 +97,7 @@ if(!user.equals("admin")){
                                             + " and name = '"+name+"' and lastname = '"+lastname+"'";
                                     ResultSet rs = statement.executeQuery(sql);
                                     boolean flag = false;
-                                    if(rs.first()){
+                                    if(rs.next()){
                                         if(rs.getInt("count(*)")!=0)
                                             flag = true;
                                     }
@@ -107,7 +107,7 @@ if(!user.equals("admin")){
                                             + " and name = '"+name+"' and lastname = '"+lastname+"'";
                                     rs = statement.executeQuery(sql);
                                     String id_user="";
-                                    if(rs.first()){
+                                    if(rs.next()){
                                         id_user = rs.getString("id_user");
                                     }
                                     rs.close();
@@ -115,7 +115,7 @@ if(!user.equals("admin")){
                                         //check if the user is assigned to any classes
                                         sql = "select distinct id_class from class_has_user where id_user = '"+id_user+"'";
                                         rs = statement.executeQuery(sql);
-                                        //delete user first from all his classes
+                                        //delete user next from all his classes
                                         Statement statement2 = connection.createStatement();
                                         while(rs.next()){
                                             sql = "delete from class_has_user where id_class = '"+rs.getString("id_class")+"'"

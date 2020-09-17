@@ -18,7 +18,7 @@ if(!user.equals("admin")){
         boolean flag = false;
         String sql = "select count(*) from class where id_class = '"+id_class+"'";
         ResultSet rs = statement.executeQuery(sql);
-        if(rs.first()){
+        if(rs.next()){
             if(rs.getInt("count(*)")==0){
                 flag = true;
             }
@@ -42,7 +42,7 @@ if(!user.equals("admin")){
         boolean flag = true;
         String sql = "select count(*) from class where id_class = '"+id_class+"'";
         ResultSet rs = statement.executeQuery(sql);
-        if(rs.first()){
+        if(rs.next()){
             if(rs.getInt("count(*)")==0){
                 flag = false;
             }
@@ -53,7 +53,7 @@ if(!user.equals("admin")){
             flag = false;
             sql = "select count(*) from class_has_user where id_class = '"+id_class+"'";
             rs = statement.executeQuery(sql);
-            if(rs.first()){
+            if(rs.next()){
                 if(rs.getInt("count(*)")==0){
                     flag = true;
                 }
@@ -148,7 +148,7 @@ if(!user.equals("admin")){
                                 while(rs.next()){
                                     sql = "select * from subject where id_subject = '"+rs.getString("id_subject")+"'";
                                     ResultSet rs2 = statement2.executeQuery(sql);
-                                    if(rs2.first()){
+                                    if(rs2.next()){
                                         title = rs2.getString("title");
                                     }
                                     rs2.close();

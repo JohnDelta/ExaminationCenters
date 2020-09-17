@@ -15,7 +15,7 @@
     String email="";
     String username="";
     String address="";
-    if(result.first()){
+    if(result.next()){
         name=result.getString("name");
         username=result.getString("username");
         lastname=result.getString("lastname");

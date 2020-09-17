@@ -27,7 +27,7 @@ if(!user.equals("supervisor")){
         String sql = "select * from user where username = '"+username+"' and "
             + "name = '"+name+"' and lastname = '"+lastname+"' and role = '2'";
         ResultSet rs = statement.executeQuery(sql);
-        if(rs.first()){
+        if(rs.next()){
             if(rs.getString("id_user")!=null)
                 id_user = rs.getString("id_user");
         }
@@ -36,7 +36,7 @@ if(!user.equals("supervisor")){
             //check if the user is already in the class
             sql = "select count(*) from class_has_user where id_user = '"+id_user+"' and id_class = '"+id_class+"'";
             rs = statement.executeQuery(sql);
-            if(rs.first()){
+            if(rs.next()){
                 alreadyIn = rs.getInt("count(*)");
             }
             rs.close();
@@ -74,7 +74,7 @@ if(!user.equals("supervisor")){
             + " = examination.id_examination and examination.id_subject = subject.id_subject"
             + " and class_has_user.id_class = '"+id_class+"' and class_has_user.id_user = '"+id_user+"'";
     rs = statement.executeQuery(sql);
-    if(rs.first()){
+    if(rs.next()){
         className = rs.getString("class.name");
         id_exam = rs.getString("examination.id_examination");
         subjectName = rs.getString("subject.title");
