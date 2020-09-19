@@ -51,7 +51,7 @@ if(!user.equals("supervisor") || request.getParameter("id_class")==null){
             + " = examination.id_examination and examination.id_subject = subject.id_subject"
             + " and class_has_user.id_class = '"+id_class+"' and class_has_user.id_user = '"+id_user+"'";
     ResultSet rs = statement.executeQuery(sql);
-    if(rs.first()){
+    if(rs.next()){
         className = rs.getString("class.name");
         classAddress = rs.getString("class.address");
         id_exam = rs.getString("examination.id_examination");
@@ -143,7 +143,7 @@ if(!user.equals("supervisor") || request.getParameter("id_class")==null){
                 $(document).ready(function(){
                     $.ajax({
                         type:'GET',
-                        url:'/WebApplication/webresources/supervisor-class/report/<%=id_class%>',
+                        url:'/ExaminationCenters/supervisor-class/report/<%=id_class%>',
                         success: function(data){
                             if(data!==null){
                                 if(data==="no-result"){

@@ -19,23 +19,22 @@ public class Endpoints {
 		return new ClassesReport().getJson();
     }
 	
+	@POST
+    @Path("student-exam/exam")
+    @Produces("application/json")
+	@Consumes("application/json")
+    public String examPut(String data) {
+		return new Exam().putJson(data);
+    }
+	
 	@GET
     @Path("student-exam/exam/{id_user}/{id_class}")
     @Produces("application/json")
-    public String getClassesReport(
+    public String examGet(
     		@PathParam("id_user") String id_user, 
     		@PathParam("id_class") String id_class
 	) {
 		return new Exam().getJson(id_user, id_class);
-    }
-	
-	@PUT
-    @Path("student-exam/exam")
-    @Consumes("application/json")
-    public void getClassesReport(
-    		@PathParam("json") String json
-	) {
-		new Exam().putJson(json);
     }
 	
 	@GET

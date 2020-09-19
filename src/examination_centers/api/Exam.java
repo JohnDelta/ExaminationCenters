@@ -12,6 +12,9 @@ import java.util.Random;
 import com.google.gson.Gson;
 
 import examination_centers.database.Database;
+import examination_centers.entities.Answer;
+import examination_centers.entities.Question;
+import examination_centers.entities.Results;
 
 /*
  * This web service is used by the students.
@@ -27,13 +30,6 @@ import examination_centers.database.Database;
  */
 
 public class Exam {
-	
-	/**
-    * Retrieves representation of an instance of restful.Exam
-    * @param id_user
-    * @param id_class
-    * @return an instance of java.lang.String
-    */
 	
 	public String getJson(String id_user, String id_class) {
 		
@@ -285,12 +281,7 @@ public class Exam {
 	}
 	
 	
-	/**
-	* PUT method for updating or creating an instance of Exam
-	* @param json representation for the resource
-	*/
-	
-	public void putJson(String json) {
+	public String putJson(String json) {
 		Answer answer = new Gson().fromJson(json, Answer.class);
         try{
             Connection connection = new Database().getConnection();
@@ -303,19 +294,18 @@ public class Exam {
             //get the exam start time
             String sql = "select examination.date from class,examination"
                     + " where id_class = '"+answer.id_class+"' and class.id_examination = examination.id_examination";
+            int MINUTE_IN_MILLIS = 60000;
             rs = statement.executeQuery(sql);
             if(rs.next()){
-                startDate = new Date(rs.getTimestamp("date").getTime());
+                startDate = new Date(rs.getTimestamp("date").getTime() - MINUTE_IN_MILLIS * 60);
             }
             rs.close();
             //check if the student's answer is correct and answered in time
             sql = "select * from question where id_question = '"+answer.id_question+"'";
             rs2 = statement.executeQuery(sql);
             if(rs2.next()){
-                int MINUTE_IN_MILLIS = 60000;
                 Date endDate = new Date(startDate.getTime()+5*MINUTE_IN_MILLIS);
                 Date answerDate = new Date(answer.date);
-                
                 //the answer time must be between start and end to be correct
                 if(rs2.getString("correct").equals(answer.answer) && 
                     startDate.before(answerDate) && answerDate.before(endDate)){
@@ -365,66 +355,6 @@ public class Exam {
         } catch(SQLException e) {
             e.printStackTrace();
         }
+        return new Gson().toJson("OK");
 	}
-	
-	/*used for : take a json answer of the exam from student*/
-	class Answer {
-		
-	    String id_user;
-	    String id_class;
-	    String id_question;
-	    String answer;
-	    String date;
-	    String correct;
-
-	    public Answer(String id_user, String id_class, String id_question, String answer, String date, String correct) {
-	        this.id_user = id_user;
-	        this.id_class = id_class;
-	        this.id_question = id_question;
-	        this.answer = answer;
-	        this.date = date;
-	        this.correct = correct;
-	    }
-	}
-
-	/*used for : send to student a json object with an array of questions to answer*/
-	class Question {
-		
-	    String type;
-	    String id_question;
-	    String qst;
-	    String ans1;
-	    String ans2;
-	    String ans3;
-	    String ans4;
-
-	    public Question(String id_question, String qst, String ans1, String ans2, String ans3, String ans4) {
-	        this.type = "question";
-	        this.id_question = id_question;
-	        this.qst = qst;
-	        this.ans1 = ans1;
-	        this.ans2 = ans2;
-	        this.ans3 = ans3;
-	        this.ans4 = ans4;
-	    }  
-	}
-
-	/*used for : send to student a json object with the results from their answers*/
-	class Results {
-		
-	    String type;
-	    String qst;
-	    String ans;
-	    String date;
-	    String correct;
-
-	    public Results(String qst, String ans, String date, String correct) {
-	        this.type = "result";
-	        this.qst = qst;
-	        this.ans = ans;
-	        this.date = date;
-	        this.correct = correct;
-	    }
-	}
-
 }

@@ -87,7 +87,7 @@ if(!user.equals("supervisor")){
             $(document).ready(function(){
                 $.ajax({
                     type:'GET',
-                    url:'/WebApplication/webresources/supervisor-classes/report/<%=id_user%>',
+                    url:'/ExaminationCenters/supervisor-classes/report/<%=id_user%>',
                     success: function(data){
                         if(data!==null){
                             var mode="table-odd";

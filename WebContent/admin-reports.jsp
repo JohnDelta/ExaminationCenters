@@ -84,7 +84,7 @@ if(!user.equals("admin")){
                         $("#studentsReport").removeClass("highlight");
                         $.ajax({
                             type:'GET',
-                            url:'/WebApplication/webresources/admin-reports/examsReport',
+                            url:'/ExaminationCenters/admin-reports/examsReport',
                             success:function(studentData){
                                     if(studentData.length>0){
                                         $("#titlesReport").append(
@@ -129,7 +129,7 @@ if(!user.equals("admin")){
                         $("#examsReport").removeClass("highlight");
                         $.ajax({
                             type:'GET',
-                            url:'/WebApplication/webresources/admin-reports/studentsReport',
+                            url:'/ExaminationCenters/admin-reports/studentsReport',
                             success:function(studentData){
                                     if(studentData.length>0){
                                         $("#titlesReport").append(
@@ -176,7 +176,7 @@ if(!user.equals("admin")){
                         $("#examsReport").removeClass("highlight");
                         $.ajax({
                             type:'GET',
-                            url:'/WebApplication/webresources/admin-reports/classesReport',
+                            url:'/ExaminationCenters/admin-reports/classesReport',
                             success:function(studentData){
                                     if(studentData.length>0){
                                         $("#titlesReport").append(

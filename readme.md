@@ -13,6 +13,7 @@ Concept project of an online examinations system.
 - JDK 1.8
 - Server: Tomcat EE PLUS v9
 - JAX-RS API: Jersey
+- Jaxb api for data binding
 - POM: Maven
 - Swing GUI framework
 - Database: MySQL | mysql-connector-java

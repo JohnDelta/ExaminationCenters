@@ -77,7 +77,7 @@ if(request.getParameter("id_class")==null || request.getParameter("name")==null
                 $(document).ready(function(){
                     $.ajax({
                     type:"GET",
-                    url:"/WebApplication/webresources/student-exam/exam/<%=id_user%>/<%=id_class%>",
+                    url:"http://localhost:8080/ExaminationCenters/student-exam/exam/<%=id_user%>/<%=id_class%>",
                     success: function(data){
                         //setup the countdown. 5 minutes from the start date
                         var startDate = new Date("<%=date%>").getTime();
@@ -117,13 +117,13 @@ if(request.getParameter("id_class")==null || request.getParameter("name")==null
                                             'date':getCurrectTime()
                                         };
                                         $.ajax({
-                                            type:'PUT',
-                                            url:'/WebApplication/webresources/student-exam/exam/<%=id_user%>/<%=id_class%>',
+                                            type:"POST",
+                                            url:"http://localhost:8080/ExaminationCenters/student-exam/exam",
                                             headers: { 
                                                 'Accept': 'application/json',
                                                 'Content-Type': 'application/json' 
                                             },
-                                            data:JSON.stringify(dataObject),
+                                            data: JSON.stringify(dataObject),
                                             success:function(nothing){
                                                 console.log('success sending the answer');
                                                 data[x]=0;
