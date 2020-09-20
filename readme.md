@@ -1,7 +1,11 @@
 # ExaminationCenters
 
 ## Description
-Concept project of an online examinations system.
+Concept project of an online examinations system. 
+Students can see the classes they're assigned to and the date which the examination is to be taken. When they finish their exam, they can see the results of their answers. 
+Supervisors handle examination classes. They can add students to classes, start, stop and reset examinations. When an exam is over, they can close it and see the results (or download) of all the students who participated in it.
+Administrators can create/remove all entities of the system and assign supervisors to examination centers. They can also see (or download) results of student exams per examination.
+Both Supervisors and Admins can also add or remove records with excel files.
 
 ### Using ECLIPSE IDE
 - Dynamic Web 4+ project
