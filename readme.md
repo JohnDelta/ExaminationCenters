@@ -7,6 +7,17 @@ Supervisors handle examination classes. They can add students to classes, start,
 Administrators can create/remove all entities of the system and assign supervisors to examination centers. They can also see (or download) results of student exams per examination.
 Both Supervisors and Admins can also add or remove records with excel files.
 
+For this project I:
+- Developed RESTful services to manage the online exam
+and the query results
+- Added administrator mode to manage all entities
+- Included options to add, delete and display mutliple entity
+records using excel documents reducing the
+administrator's workload
+- Built a GUI desktop application which can be used by the
+system's admin and supervisors along with a dynamic
+web site available to all roles
+
 ### Using ECLIPSE IDE
 - Dynamic Web 4+ project
 - M2Eclipse plug-in for Maven
